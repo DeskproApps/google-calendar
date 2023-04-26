@@ -79,6 +79,7 @@ const useLogin: UseLogin = () => {
         .oauth2()
         .getGenericCallbackUrl(
           key,
+          // eslint-disable-next-line no-useless-escape
           /code=(?<token>[\d\w%\/-]+)/,
           /state=(?<key>[\d\w-]+)/
         )
