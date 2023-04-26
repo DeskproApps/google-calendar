@@ -7,7 +7,10 @@ export type OAuthToken = {
 };
 
 export type GoogleRestError = {
-  //..
+  error: {
+    code: number,
+    message: string,
+  }
 };
 
 export type CalendarItem = {

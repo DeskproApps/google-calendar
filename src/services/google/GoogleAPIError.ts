@@ -1,17 +1,13 @@
+import type { GoogleRestError } from "./types";
+
 export type InitData = {
   status: number,
-  data: {
-    code: number,
-    message: string,
-  },
+  data: GoogleRestError,
 };
 
 class GoogleAPIError extends Error {
   status: number;
-  data: {
-    code: number,
-    message: string,
-  };
+  data: GoogleRestError;
 
   constructor({ status, data }: InitData) {
     const message = "Google Api Error";

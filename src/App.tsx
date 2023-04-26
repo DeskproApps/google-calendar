@@ -17,6 +17,7 @@ import {
   LoginPage,
   LoadingAppPage,
 } from "./pages";
+import { useLogout } from "./hooks";
 import { isNavigatePayload } from "./utils";
 import type { FC } from "react";
 import type { EventPayload } from "./types";
@@ -25,6 +26,9 @@ const App: FC = () => {
   const navigate = useNavigate();
   const { reset } = useQueryErrorResetBoundary();
   const { client } = useDeskproAppClient();
+  const { isLoading: isLoadingLogout, logout } = useLogout();
+
+  const isLoading = [isLoadingLogout].some((isLoading) => isLoading);
 
   useDeskproElements(({ registerElement }) => {
     registerElement("refresh", { type: "refresh_button" });
@@ -37,6 +41,7 @@ const App: FC = () => {
           navigate(payload.path);
         }
       })
+      .with("logout", logout)
       .run();
   }, 500);
 
@@ -49,7 +54,7 @@ const App: FC = () => {
     onElementEvent: debounceElementEvent,
   }, [client]);
 
-  if (!client) {
+  if (!client || isLoading) {
     return (
       <LoadingSpinner/>
     );

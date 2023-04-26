@@ -79,7 +79,7 @@ const useLogin: UseLogin = () => {
         .oauth2()
         .getGenericCallbackUrl(
           key,
-          /code=(?<token>[\d\w%-]+)/,
+          /code=(?<token>[\d\w%\/-]+)/,
           /state=(?<key>[\d\w-]+)/
         )
         .then(setCallback);
