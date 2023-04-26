@@ -11,7 +11,12 @@ import {
   useDeskproAppEvents,
 } from "@deskpro/app-sdk";
 import { ErrorFallback } from "./components";
-import { AdminPage } from "./pages";
+import {
+  HomePage,
+  AdminPage,
+  LoginPage,
+  LoadingAppPage,
+} from "./pages";
 import { isNavigatePayload } from "./utils";
 import type { FC } from "react";
 import type { EventPayload } from "./types";
@@ -55,6 +60,9 @@ const App: FC = () => {
       <ErrorBoundary onReset={reset} FallbackComponent={ErrorFallback}>
         <Routes>
           <Route path="/admin/callback" element={<AdminPage/>} />
+          <Route path="/login" element={<LoginPage/>} />
+          <Route path="/home" element={<HomePage/>} />
+          <Route index element={<LoadingAppPage/>} />
         </Routes>
       </ErrorBoundary>
       <br/><br/><br/>

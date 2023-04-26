@@ -37,6 +37,11 @@
         "url": "https://www.googleapis.com/calendar/v3/.*",
         "methods": ["GET", "POST"],
         "timeout": 20
+      },
+      {
+        "url": "https://oauth2.googleapis.com/.*",
+        "methods": ["GET", "POST"],
+        "timeout": 20
       }
     ]
   }
