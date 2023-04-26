@@ -1,26 +1,46 @@
 {
-  "name": "@deskpro-apps/my-app",
-  "title": "My App",
+  "name": "@deskpro-apps/google-calendar",
+  "title": "Google Calendar",
   "description": "My Deskpro app",
-  "version": "0.0.1",
+  "version": "0.0.0",
   "scope": "agent",
   "isSingleInstall": false,
   "hasDevMode": true,
   "targets": [{ "target": "ticket_sidebar", "entrypoint": "index.html" }],
   "settings": {
-    "example": {
-      "title": "Example Setting",
-      "description": "Example backend only setting",
+    "client_id": {
+      "title": "Client ID",
       "type": "string",
+      "isRequired": true,
+      "isBackendOnly": false,
+      "order": 10
+    },
+    "client_secret": {
+      "title": "Client secret",
+      "type": "string",
+      "isRequired": true,
+      "isBackendOnly": true,
+      "order": 20
+    },
+    "callback_url": {
+      "title": "Callback URL",
+      "type": "app_embedded",
+      "options": { "entrypoint": "#/admin/callback" },
       "isRequired": false,
-      "isBackendOnly": true
+      "isBackendOnly": true,
+      "order": 30
     }
   },
   "proxy": {
     "whitelist": [
       {
-        "url": "https://jsonplaceholder.typicode.com/.*",
-        "methods": ["GET"],
+        "url": "https://www.googleapis.com/calendar/v3/.*",
+        "methods": ["GET", "POST"],
+        "timeout": 20
+      },
+      {
+        "url": "https://oauth2.googleapis.com/.*",
+        "methods": ["GET", "POST"],
         "timeout": 20
       }
     ]

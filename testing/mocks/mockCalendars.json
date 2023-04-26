@@ -1,0 +1,148 @@
+{
+  "kind": "calendar#calendarList",
+  "etag": "\"p33cahj7kij3vs0g\"",
+  "nextSyncToken": "CNiozPSUx_4CEhF4enBhd254QGdtYWlsLmNvbQ==",
+  "items": [
+    {
+      "kind": "calendar#calendarListEntry",
+      "etag": "\"1680683404821000\"",
+      "id": "xzpawnx@gmail.com",
+      "summary": "xzpawnx@gmail.com",
+      "timeZone": "Europe/Kiev",
+      "colorId": "12",
+      "backgroundColor": "#fad165",
+      "foregroundColor": "#000000",
+      "selected": true,
+      "accessRole": "owner",
+      "defaultReminders": [
+        {
+          "method": "popup",
+          "minutes": 10
+        }
+      ],
+      "notificationSettings": {
+        "notifications": [
+          {
+            "type": "eventCreation",
+            "method": "email"
+          },
+          {
+            "type": "eventChange",
+            "method": "email"
+          },
+          {
+            "type": "eventCancellation",
+            "method": "email"
+          },
+          {
+            "type": "eventResponse",
+            "method": "email"
+          }
+        ]
+      },
+      "primary": true,
+      "conferenceProperties": {
+        "allowedConferenceSolutionTypes": [
+          "hangoutsMeet"
+        ]
+      }
+    },
+    {
+      "kind": "calendar#calendarListEntry",
+      "etag": "\"1680683405367000\"",
+      "id": "ru.ukrainian#holiday@group.v.calendar.google.com",
+      "summary": "Праздники Украины",
+      "description": "Праздники и памятные даты Украины",
+      "timeZone": "Europe/Kiev",
+      "summaryOverride": "Праздники Украины",
+      "colorId": "7",
+      "backgroundColor": "#42d692",
+      "foregroundColor": "#000000",
+      "selected": true,
+      "accessRole": "reader",
+      "defaultReminders": [],
+      "conferenceProperties": {
+        "allowedConferenceSolutionTypes": [
+          "hangoutsMeet"
+        ]
+      }
+    },
+    {
+      "kind": "calendar#calendarListEntry",
+      "etag": "\"1680683405913000\"",
+      "id": "addressbook#contacts@group.v.calendar.google.com",
+      "summary": "Birthdays",
+      "description": "Displays birthdays, anniversaries and other event dates of people in Google Contacts.",
+      "timeZone": "Europe/Kiev",
+      "summaryOverride": "Contacts",
+      "colorId": "13",
+      "backgroundColor": "#92e1c0",
+      "foregroundColor": "#000000",
+      "selected": true,
+      "accessRole": "reader",
+      "defaultReminders": [],
+      "conferenceProperties": {
+        "allowedConferenceSolutionTypes": [
+          "hangoutsMeet"
+        ]
+      }
+    },
+    {
+      "kind": "calendar#calendarListEntry",
+      "etag": "\"1680683406974000\"",
+      "id": "family17688267004807905377@group.calendar.google.com",
+      "summary": "Family",
+      "timeZone": "UTC",
+      "colorId": "10",
+      "backgroundColor": "#b3dc6c",
+      "foregroundColor": "#000000",
+      "selected": true,
+      "accessRole": "writer",
+      "defaultReminders": [
+        {
+          "method": "popup",
+          "minutes": 10
+        }
+      ],
+      "conferenceProperties": {
+        "allowedConferenceSolutionTypes": [
+          "hangoutsMeet"
+        ]
+      }
+    },
+    {
+      "kind": "calendar#calendarListEntry",
+      "etag": "\"1680683407694000\"",
+      "id": "usi9q4gc0eln2v7392tqb8k4k4@group.calendar.google.com",
+      "summary": "Activities",
+      "timeZone": "Europe/Kiev",
+      "colorId": "17",
+      "backgroundColor": "#9a9cff",
+      "foregroundColor": "#000000",
+      "accessRole": "owner",
+      "defaultReminders": [],
+      "conferenceProperties": {
+        "allowedConferenceSolutionTypes": [
+          "hangoutsMeet"
+        ]
+      }
+    },
+    {
+      "kind": "calendar#calendarListEntry",
+      "etag": "\"1682081352655000\"",
+      "id": "andersen.kharkov@gmail.com",
+      "summary": "andersen.kharkov@gmail.com",
+      "timeZone": "Europe/Kiev",
+      "colorId": "9",
+      "backgroundColor": "#7bd148",
+      "foregroundColor": "#000000",
+      "accessRole": "reader",
+      "defaultReminders": [],
+      "conferenceProperties": {
+        "allowedConferenceSolutionTypes": [
+          "hangoutsMeet"
+        ]
+      }
+    }
+  ]
+}
