@@ -11,7 +11,7 @@ const queryClient = new QueryClient({
 });
 
 enum QueryKey {
-  //...
+  CALENDARS = "calendars",
 }
 
 export { queryClient, QueryKey };

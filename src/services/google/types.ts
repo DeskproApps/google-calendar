@@ -1,3 +1,5 @@
+import type { DateTime } from "../../types";
+
 export type OAuthToken = {
   token_type: "Bearer"
   access_token: string,
@@ -47,4 +49,37 @@ export type CalendarList = {
   etag: string,
   nextSyncToken: string,
   items: CalendarItem[],
+};
+
+export type EventItem = {
+  kind: "calendar#event",
+  etag: string,
+  id: string,
+  status: string, // "confirmed",
+  htmlLink: string,
+  created: DateTime,
+  updated: DateTime,
+  summary: string,
+  description: string,
+  creator: { email: string },
+  organizer: { email: string, displayName: string, self: boolean },
+  start: { dateTime: DateTime, timeZone: string },
+  end: { dateTime: DateTime, timeZone: string },
+  recurrence: string[],
+  iCalUID: string,
+  sequence: number,
+  reminders: { useDefault: boolean },
+  eventType: string, // "default"
+};
+
+export type CalendarEvents = {
+  kind: "calendar#events",
+  etag: string,
+  summary: CalendarItem["summary"],
+  updated: DateTime,
+  timeZone: string, // "Europe/Kiev",
+  accessRole: string, // "reader",
+  defaultReminders: never,
+  nextSyncToken: string,
+  items: EventItem[],
 };

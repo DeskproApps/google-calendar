@@ -1,10 +1,26 @@
-import { P3 } from "@deskpro/deskpro-ui";
+import { useState, useCallback } from "react";
 import { useDeskproElements } from "@deskpro/app-sdk";
 import { useSetTitle } from "../../hooks";
-import { Container } from "../../components/common";
+import { useCalendars } from "./hooks";
+import { getFilteredEvents } from "../../utils";
+import { Home } from "../../components";
 import type { FC } from "react";
+import type { CalendarItem } from "../../services/google/types";
 
 const HomePage: FC = () => {
+  const [selectedCalendarIds, setSelectedCalendarIds] = useState<Array<CalendarItem["id"]>>([]);
+  const { calendars, isLoading, events } = useCalendars();
+
+  const onSelectedCalendar = useCallback((selectCalendarId: CalendarItem["id"]) => {
+    if (selectCalendarId) {
+      const newValue = selectedCalendarIds.includes(selectCalendarId)
+        ? selectedCalendarIds.filter((calendarId) => calendarId !== selectCalendarId)
+        : [...selectedCalendarIds, selectCalendarId];
+
+      setSelectedCalendarIds(newValue);
+    }
+  }, [selectedCalendarIds]);
+
   useSetTitle("Google Calendar");
 
   useDeskproElements(({ registerElement, clearElements }) => {
@@ -19,9 +35,13 @@ const HomePage: FC = () => {
   });
 
   return (
-    <Container>
-      <P3>No events found in calendar(s)</P3>
-    </Container>
+    <Home
+      events={getFilteredEvents(selectedCalendarIds, events)}
+      calendars={calendars}
+      isLoading={isLoading}
+      selectedCalendars={selectedCalendarIds}
+      onSelectedCalendar={onSelectedCalendar}
+    />
   );
 };
 
