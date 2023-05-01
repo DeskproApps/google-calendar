@@ -1,5 +1,4 @@
 import { HorizontalDivider, LoadingSpinner } from "@deskpro/app-sdk";
-import { Container } from "../common";
 import { CalendarsSelect } from "./CalendarsSelect";
 import { Events } from "./Events";
 import type { FC } from "react";
@@ -23,20 +22,16 @@ const Home: FC<Props> = ({
 }) => {
   return (
     <>
-      <Container>
-        <CalendarsSelect
-          calendars={calendars}
-          selectedCalendars={selectedCalendars}
-          onSelectedCalendar={onSelectedCalendar}
-        />
-      </Container>
+      <CalendarsSelect
+        calendars={calendars}
+        selectedCalendars={selectedCalendars}
+        onSelectedCalendar={onSelectedCalendar}
+      />
       <HorizontalDivider/>
-      <Container>
-        {isLoading
-          ? <LoadingSpinner/>
-          : <Events events={events} />
-        }
-      </Container>
+      {isLoading
+        ? <LoadingSpinner/>
+        : <Events events={events} />
+      }
     </>
   );
 };

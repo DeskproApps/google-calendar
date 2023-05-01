@@ -1,24 +1,24 @@
 import { Title } from "@deskpro/app-sdk";
 import { format } from "../../utils/date";
-import { DATETIME_FORMAT } from "../../constants";
+import { TIME_FORMAT } from "../../constants";
 import { CalendarLogo, TwoProperties } from "../common";
 import type { FC } from "react";
 import type { EventType } from "../../types";
 
-const Event: FC<EventType> = (props) => {
+const Event: FC<EventType> = ({ summary, htmlLink, start, end, calendarSummary }) => {
   return (
     <>
       <Title
-        title={props.summary}
-        link={props.htmlLink}
+        title={summary}
+        link={htmlLink}
         icon={<CalendarLogo />}
         marginBottom={7}
       />
       <TwoProperties
         leftLabel="Time"
-        leftText={`${format(props.start.dateTime, DATETIME_FORMAT)} - ${format(props.end.dateTime, DATETIME_FORMAT)}`}
+        leftText={`${format(start.dateTime, TIME_FORMAT)} - ${format(end.dateTime, TIME_FORMAT)}`}
         rightLabel="Calendar"
-        rightText={props.calendarSummary}
+        rightText={calendarSummary}
         marginBottom={20}
       />
     </>

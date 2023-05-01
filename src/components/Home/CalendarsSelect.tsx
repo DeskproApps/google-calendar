@@ -1,7 +1,7 @@
 import { useMemo, useCallback } from "react";
 import size from "lodash/size";
 import { getOption } from "../../utils";
-import { Label, Select } from "../common";
+import { Label, Select, Container } from "../common";
 import type { FC } from "react";
 import type { CalendarItem } from "../../services/google/types";
 import type { Option } from "../../types";
@@ -24,15 +24,17 @@ const CalendarsSelect: FC<Props> = ({ calendars, selectedCalendars, onSelectedCa
   }, [onSelectedCalendar]);
 
   return (
-    <Label htmlFor="calendars" label="Select Calendar(s)">
-      <Select
-        id="calendars"
-        onChange={onChange}
-        closeOnSelect={false}
-        value={selectedCalendars}
-        options={calendarOptions}
-      />
-    </Label>
+    <Container>
+      <Label htmlFor="calendars" label="Select Calendar(s)">
+        <Select
+          id="calendars"
+          onChange={onChange}
+          closeOnSelect={false}
+          value={selectedCalendars}
+          options={calendarOptions}
+        />
+      </Label>
+    </Container>
   );
 };
 

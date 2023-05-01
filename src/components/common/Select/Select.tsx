@@ -1,6 +1,6 @@
 import { useState, useMemo } from "react";
 import get from "lodash/get";
-import toLower from "lodash/tolower";
+import toLower from "lodash/toLower";
 import {
   faCheck,
   faCaretDown,

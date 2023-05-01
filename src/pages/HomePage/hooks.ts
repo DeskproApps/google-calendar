@@ -27,6 +27,7 @@ const useCalendars: UseCalendars = () => {
     queryKey: [QueryKey.CALENDARS, id, "events"],
     queryFn: (client: IDeskproClient) => getEventsService(client, id),
     enabled: size(get(calendars, ["data"], [])) > 0,
+    retry: false,
     useErrorBoundary: false,
     select: (data: CalendarEvents) => get(data, ["items"], []).map((event: EventItem) => ({
       id: event.id,
