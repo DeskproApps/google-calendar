@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { act, waitFor } from "@testing-library/react";
+import { act, cleanup, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { LoginPage } from "../LoginPage";
 import { render } from "../../../../testing";
@@ -12,6 +12,11 @@ jest.mock("react-router-dom", () => ({
 jest.mock("../hooks", () => ({ useLogin: jest.fn() }));
 
 describe("LoginPage", () => {
+  afterEach(() => {
+    jest.clearAllMocks();
+    cleanup();
+  });
+
   test("render", async () => {
     (useLogin as jest.Mock).mockImplementation(() => ({
       error: null,
