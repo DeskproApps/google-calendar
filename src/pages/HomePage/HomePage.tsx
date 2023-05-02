@@ -1,6 +1,9 @@
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 import get from "lodash/get";
 import noop from "lodash/noop";
+import find from "lodash/find";
+import isEmpty from "lodash/isEmpty";
+import size from "lodash/size";
 import endOfWeek from "date-fns/fp/endOfWeekWithOptions";
 import addWeeks from "date-fns/addWeeks";
 import {
@@ -61,6 +64,17 @@ const HomePage: FC = () => {
       })
       .catch(noop);
   });
+
+  useEffect(() => {
+    if (!client || isEmpty(calendars) || size(selectedCalendarIds)) {
+      return;
+    }
+
+    const { id } = find(calendars, ["primary", true]) || {};
+    id && setSelectedCalendarIds([id]);
+
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [client, calendars]);
 
   return (
     <Home
