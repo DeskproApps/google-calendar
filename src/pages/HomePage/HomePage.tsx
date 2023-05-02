@@ -1,9 +1,19 @@
 import { useState, useCallback } from "react";
+import get from "lodash/get";
+import noop from "lodash/noop";
 import endOfWeek from "date-fns/fp/endOfWeekWithOptions";
 import addWeeks from "date-fns/addWeeks";
-import { useDeskproElements } from "@deskpro/app-sdk";
+import {
+  useDeskproElements,
+  useDeskproAppClient,
+  useInitialisedDeskproAppClient,
+} from "@deskpro/app-sdk";
 import { useSetTitle } from "../../hooks";
 import { useCalendars } from "./hooks";
+import {
+  getSelectedCalendarsService,
+  saveSelectedCalendarsService,
+} from "../../services/deskpro";
 import { getFilteredEvents } from "../../utils";
 import { Home } from "../../components";
 import type { FC } from "react";
@@ -11,6 +21,7 @@ import type { DateTime } from "../../types";
 import type { CalendarItem } from "../../services/google/types";
 
 const HomePage: FC = () => {
+  const { client } = useDeskproAppClient();
   const [selectedCalendarIds, setSelectedCalendarIds] = useState<Array<CalendarItem["id"]>>([]);
   const [timeMax, setTimeMax] = useState<DateTime>(endOfWeek({ weekStartsOn: 1 }, new Date()).toISOString());
   const { calendars, isLoading, events } = useCalendars(timeMax);
@@ -22,8 +33,9 @@ const HomePage: FC = () => {
         : [...selectedCalendarIds, selectCalendarId];
 
       setSelectedCalendarIds(newValue);
+      client && saveSelectedCalendarsService(client, newValue).then(noop).catch(noop);
     }
-  }, [selectedCalendarIds]);
+  }, [client, selectedCalendarIds]);
 
   const onLoadNextWeek = useCallback(() => {
     setTimeMax(endOfWeek({ weekStartsOn: 1 }, addWeeks(new Date(timeMax), 1)).toISOString());
@@ -40,6 +52,14 @@ const HomePage: FC = () => {
         { title: "Log Out", payload: { type: "logout" } },
       ],
     });
+  });
+
+  useInitialisedDeskproAppClient((client) => {
+    getSelectedCalendarsService(client)
+      .then((data) => {
+        setSelectedCalendarIds(get(data, [0, "data"], []) as Array<CalendarItem["id"]>);
+      })
+      .catch(noop);
   });
 
   return (
