@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { waitFor, renderHook } from "@testing-library/react";
+import { waitFor, renderHook, cleanup } from "@testing-library/react";
 import { useCheckIsAuth } from "../hooks";
 import { getCalendarsService } from "../../../services/google";
 import { useLogout } from "../../../hooks";
@@ -14,6 +14,11 @@ jest.mock("../../../services/google/getCalendarsService");
 jest.mock("../../../hooks/useLogout");
 
 describe("useCheckIsAuth", () => {
+  afterEach(() => {
+    jest.clearAllMocks();
+    cleanup();
+  });
+
   test("should go to the main page if we have access token and receive user data", async () => {
     const logout = jest.fn();
     const navigate = jest.fn();
