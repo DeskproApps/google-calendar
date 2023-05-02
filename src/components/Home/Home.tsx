@@ -11,6 +11,7 @@ type Props = {
   calendars: CalendarItem[],
   selectedCalendars: Array<CalendarItem["id"]>,
   onSelectedCalendar: (calendarId: CalendarItem["id"]) => void,
+  onLoadNextWeek: () => void,
 };
 
 const Home: FC<Props> = ({
@@ -19,6 +20,7 @@ const Home: FC<Props> = ({
   isLoading,
   selectedCalendars,
   onSelectedCalendar,
+  onLoadNextWeek,
 }) => {
   return (
     <>
@@ -30,7 +32,7 @@ const Home: FC<Props> = ({
       <HorizontalDivider/>
       {isLoading
         ? <LoadingSpinner/>
-        : <Events events={events} />
+        : <Events events={events} onLoadNextWeek={onLoadNextWeek} />
       }
     </>
   );

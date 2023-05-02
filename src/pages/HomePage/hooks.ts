@@ -6,15 +6,15 @@ import { useQueryWithClient, useQueriesWithClient } from "../../hooks";
 import { QueryKey } from "../../query";
 import type { IDeskproClient } from "@deskpro/app-sdk";
 import type { CalendarItem, EventItem, CalendarEvents, CalendarList } from "../../services/google/types";
-import type { EventType } from "../../types";
+import type { EventType, DateTime } from "../../types";
 
-type UseCalendars = () => {
+type UseCalendars = (timeMax: DateTime) => {
   isLoading: boolean,
   events: EventType[],
   calendars: CalendarItem[],
 };
 
-const useCalendars: UseCalendars = () => {
+const useCalendars: UseCalendars = (timeMax) => {
   const calendars = useQueryWithClient<CalendarList, unknown, CalendarItem[]>(
     [QueryKey.CALENDARS],
     (client) => getCalendarsService(client),
@@ -24,8 +24,8 @@ const useCalendars: UseCalendars = () => {
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore need to fix hook typings
   const events = useQueriesWithClient<EventType[]>((get(calendars, ["data"], []) || []).map(({ id }: CalendarItem) => ({
-    queryKey: [QueryKey.CALENDARS, id, "events"],
-    queryFn: (client: IDeskproClient) => getEventsService(client, id),
+    queryKey: [QueryKey.CALENDARS, id, "events", timeMax],
+    queryFn: (client: IDeskproClient) => getEventsService(client, id, timeMax),
     enabled: size(get(calendars, ["data"], [])) > 0,
     retry: false,
     useErrorBoundary: false,

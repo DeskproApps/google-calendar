@@ -7,14 +7,16 @@ import { getMapFilteredEventsByDay } from "../../utils";
 import { format } from "../../utils/date";
 import { Container } from "../common";
 import { Event } from "./Event";
+import { LoadNextWeek } from "./LoadNextWeek";
 import type { FC } from "react";
 import type { EventType } from "../../types";
 
 type Props = {
   events: EventType[],
+  onLoadNextWeek: () => void,
 };
 
-const Events: FC<Props> = ({ events }) => {
+const Events: FC<Props> = ({ events, onLoadNextWeek }) => {
   const mapFilteredEvents = useMemo(() => getMapFilteredEventsByDay(events), [events]);
 
   return (size(events) === 0)
@@ -34,6 +36,7 @@ const Events: FC<Props> = ({ events }) => {
             <HorizontalDivider style={{ marginBottom: 10 }}/>
           </Fragment>
         ))}
+        <LoadNextWeek onLoadNextWeek={onLoadNextWeek}/>
       </>
     )
 };
