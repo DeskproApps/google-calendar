@@ -4,26 +4,26 @@ import { Home } from "../Home";
 import { render } from "../../../../testing";
 
 const events = [{
-  "id": "tb34kdqm2cr96rvk2blhprpgks_20230503T083000Z",
+  "id": "001",
   "summary": "All-Hands Engineering Stand Up",
-  "htmlLink": "https://www.google.com/calendar/event?eid=dGIzNGtkcW0yY3I5NnJ2azJibGhwcnBna3NfMjAyMzA1MDNUMDgzMDAwWiB4enBhd254QG0",
+  "htmlLink": "https://www.google.com/calendar/event?eid=001",
   "start": {"dateTime": "2023-05-03T11:30:00+03:00", "timeZone": "Europe/Kiev"},
   "end": {"dateTime": "2023-05-03T12:00:00+03:00", "timeZone": "Europe/Kiev"},
-  "calendarId": "xzpawnx@gmail.com",
+  "calendarId": "calendar001",
   "calendarSummary": "xzpawnx@gmail.com"
 }, {
-  "id": "u12nn6nrp1jsnm3scr9u6b8j8t_20230502T084000Z",
+  "id": "002",
   "summary": "Apps Stand Up",
-  "htmlLink": "https://www.google.com/calendar/event?eid=dTEybm42bnJwMWpzbm0zc2NyOXU2YjhqOHRfMjAyMzA1MDJUMDg0MDAwWiB4enBhd254QG0",
+  "htmlLink": "https://www.google.com/calendar/event?eid=002",
   "start": {"dateTime": "2023-05-02T11:40:00+03:00", "timeZone": "Europe/Kiev"},
   "end": {"dateTime": "2023-05-02T11:50:00+03:00", "timeZone": "Europe/Kiev"},
-  "calendarId": "xzpawnx@gmail.com",
+  "calendarId": "calendar001",
   "calendarSummary": "xzpawnx@gmail.com"
 }];
 
 const calendars = [
-  { id: "xzpawnx@gmail.com", summary: "xzpawnx@gmail.com" },
-  { id: "usi9q4gc0eln2v7392tqb8k4k4@group.calendar.google.com", summary: "Activities"}
+  { id: "calendar001", summary: "xzpawnx@gmail.com" },
+  { id: "calendar002", summary: "Activities"}
 ];
 
 describe("Home", () => {
