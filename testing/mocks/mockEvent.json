@@ -32,8 +32,8 @@
   "sequence": 2,
   "attendees": [
     {
-      "email": "xzpawnx@gmail.com",
       "self": true,
+      "email": "xzpawnx@email.com",
       "responseStatus": "accepted"
     },
     {

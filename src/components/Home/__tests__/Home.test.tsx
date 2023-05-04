@@ -91,5 +91,27 @@ describe("Home", () => {
     });
   });
 
-  test.todo("should navigate to event");
+  test("should navigate to event", async () => {
+    const mockOnNavigateToEvent = jest.fn();
+
+    const { findByRole } = render((
+      <Home
+        isLoading={false}
+        events={events as never}
+        calendars={calendars as never}
+        selectedCalendars={["xzpawnx@gmail.com"]}
+        onSelectedCalendar={jest.fn()}
+        onLoadNextWeek={jest.fn()}
+        onNavigateToEvent={mockOnNavigateToEvent}
+      />
+    ), { wrappers: { theme: true } });
+
+    const link = await findByRole("link", { name: "Apps Stand Up" });
+
+    await userEvent.click(link);
+
+    await waitFor(() => {
+      expect(mockOnNavigateToEvent).toHaveBeenCalled();
+    });
+  });
 });

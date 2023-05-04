@@ -83,7 +83,11 @@ const HomePage: FC = () => {
     }
 
     const { id } = find(calendars, ["primary", true]) || {};
-    id && setSelectedCalendarIds([id]);
+
+    if (id) {
+      setSelectedCalendarIds([id]);
+      saveSelectedCalendarsService(client, [id]).then(noop).catch(noop);
+    }
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [client, calendars]);
