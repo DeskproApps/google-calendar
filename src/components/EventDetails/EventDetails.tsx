@@ -1,6 +1,5 @@
 import { match } from "ts-pattern";
 import get from "lodash/get";
-import size from "lodash/size";
 import { faCheck, faX, faQuestion } from "@fortawesome/free-solid-svg-icons";
 import { P5, Stack, TagCircleIcon } from "@deskpro/deskpro-ui";
 import { Title } from "@deskpro/app-sdk";
@@ -24,7 +23,8 @@ type Props = {
 };
 
 const EventDetails: FC<Props> = ({ event, calendar }) => {
-  const isAttendees = !Array.isArray(get(event, ["attendees"])) || !size(get(event, ["attendees"]));
+  const isAttendees = Array.isArray(get(event, ["attendees"])) && event.attendees.length > 0;
+
   return (
     <Container>
       <Title
@@ -54,13 +54,13 @@ const EventDetails: FC<Props> = ({ event, calendar }) => {
 
       <Property
         label="Attendees"
-        text={isAttendees ? "-" : (
+        text={!isAttendees ? "-" : (
           <>
-            {(event?.attendees || []).map((attendee) => (
-              <Stack gap={6} align="center">
-                <P5 key={attendee.email}>
-                  <OverflowText>{attendee?.displayName ?? attendee?.email ?? "-"}</OverflowText>
-                </P5>
+            {(event.attendees || []).map((attendee) => (
+              <Stack gap={6} align="center" key={attendee?.email}>
+                <OverflowText as={P5}>
+                  {attendee?.displayName ?? attendee?.email ?? "-"}
+                </OverflowText>
                 {match(attendee.responseStatus)
                   .with("accepted", () => <TagCircleIcon color="turquoise" icon={faCheck as AnyIcon} size={14} iconSize={7} />)
                   .with("declined", () => <TagCircleIcon color="red" icon={faX as AnyIcon} size={14} iconSize={7} />)

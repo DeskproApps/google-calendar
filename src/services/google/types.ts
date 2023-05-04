@@ -16,10 +16,10 @@ export type GoogleRestError = {
 };
 
 export type User = {
-  email:	string,
-  self?:	boolean,
-  displayName?:	string,
-  id?:	string,
+  email: string,
+  self?: boolean,
+  displayName?: string,
+  id?: string,
 };
 
 export type EventDateTime = {
