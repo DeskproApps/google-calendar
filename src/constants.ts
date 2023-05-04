@@ -5,6 +5,10 @@ export const TIME_FORMAT = "H:mm";
 
 export const DATETIME_FORMAT = `${DATE_FORMAT} ${TIME_FORMAT}`;
 
+export const EVENT_FORMAT = `EEEE, LLLL d ${TIME_FORMAT}`;
+
+export const DAY_FORMAT = "E, MMM d";
+
 /** Deskpro */
 export const APP_PREFIX = "google_calendar";
 

@@ -32,6 +32,8 @@ const CalendarsSelect: FC<Props> = ({ calendars, selectedCalendars, onSelectedCa
           closeOnSelect={false}
           value={selectedCalendars}
           options={calendarOptions}
+          containerHeight={200}
+          containerMaxHeight={200}
         />
       </Label>
     </Container>

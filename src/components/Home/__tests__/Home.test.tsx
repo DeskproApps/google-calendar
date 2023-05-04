@@ -41,6 +41,7 @@ describe("Home", () => {
         selectedCalendars={[]}
         onSelectedCalendar={jest.fn()}
         onLoadNextWeek={jest.fn()}
+        onNavigateToEvent={jest.fn()}
       />
     ), { wrappers: { theme: true } });
 
@@ -57,12 +58,13 @@ describe("Home", () => {
         selectedCalendars={["xzpawnx@gmail.com"]}
         onSelectedCalendar={jest.fn()}
         onLoadNextWeek={jest.fn()}
+        onNavigateToEvent={jest.fn()}
       />
     ), { wrappers: { theme: true } });
 
-    expect(await findByText(/02 May, 2023/i)).toBeInTheDocument();
+    expect(await findByText(/Tue, May 2/i)).toBeInTheDocument();
     expect(await findByText(/Apps Stand Up/i)).toBeInTheDocument();
-    expect(await findByText(/03 May, 2023/i)).toBeInTheDocument();
+    expect(await findByText(/Wed, May 3/i)).toBeInTheDocument();
     expect(await findByText(/All-Hands Engineering Stand Up/i)).toBeInTheDocument();
   });
 
@@ -76,6 +78,7 @@ describe("Home", () => {
         selectedCalendars={["xzpawnx@gmail.com"]}
         onSelectedCalendar={jest.fn()}
         onLoadNextWeek={mockOnLoadNextWeek}
+        onNavigateToEvent={jest.fn()}
       />
     ), { wrappers: { theme: true } });
 
@@ -87,4 +90,6 @@ describe("Home", () => {
       expect(mockOnLoadNextWeek).toHaveBeenCalled();
     });
   });
+
+  test.todo("should navigate to event");
 });

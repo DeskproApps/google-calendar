@@ -16,6 +16,7 @@ import {
   AdminPage,
   LoginPage,
   LoadingAppPage,
+  EventDetailsPage,
 } from "./pages";
 import { useLogout } from "./hooks";
 import { isNavigatePayload } from "./utils";
@@ -67,6 +68,7 @@ const App: FC = () => {
           <Route path="/admin/callback" element={<AdminPage/>} />
           <Route path="/login" element={<LoginPage/>} />
           <Route path="/home" element={<HomePage/>} />
+          <Route path="/event" element={<EventDetailsPage/>} />
           <Route index element={<LoadingAppPage/>} />
         </Routes>
       </ErrorBoundary>

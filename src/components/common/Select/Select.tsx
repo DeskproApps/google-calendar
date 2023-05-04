@@ -10,6 +10,7 @@ import { DivAsInput } from "@deskpro/deskpro-ui";
 import { Dropdown } from "@deskpro/app-sdk";
 import type { ReactNode } from "react";
 import type {
+  AnyIcon,
   LabelProps,
   DropdownItemType,
   DivAsInputWithDisplayProps,
@@ -18,7 +19,7 @@ import type { DropdownTargetProps, DropdownProps } from "@deskpro/app-sdk";
 import type { Option } from "../../../types";
 import size from "lodash/size";
 
-type Props<T> = Pick<DropdownProps<T, HTMLElement>, "closeOnSelect"> & {
+type Props<T> = Pick<DropdownProps<T, HTMLElement>, "closeOnSelect"|"containerHeight"|"containerMaxHeight"> & {
   id: string;
   error?: DivAsInputWithDisplayProps["error"];
   value?: T | T[];
@@ -76,8 +77,8 @@ const Select = <T,>({
       showInternalSearch={showInternalSearch}
       fetchMoreText={"Fetch more"}
       autoscrollText={"Autoscroll"}
-      selectedIcon={faCheck}
-      externalLinkIcon={faExternalLinkAlt}
+      selectedIcon={faCheck as AnyIcon}
+      externalLinkIcon={faExternalLinkAlt as AnyIcon}
       placement="bottom-start"
       hideIcons
       inputValue={input}
@@ -98,7 +99,7 @@ const Select = <T,>({
           id={id}
           placeholder={placeholder || "Select Value"}
           variant="inline"
-          rightIcon={faCaretDown}
+          rightIcon={faCaretDown as AnyIcon}
           error={error}
           ref={targetRef}
           {...targetProps}

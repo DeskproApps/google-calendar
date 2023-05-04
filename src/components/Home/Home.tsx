@@ -2,7 +2,7 @@ import { HorizontalDivider, LoadingSpinner } from "@deskpro/app-sdk";
 import { CalendarsSelect } from "./CalendarsSelect";
 import { Events } from "./Events";
 import type { FC } from "react";
-import type { CalendarItem } from "../../services/google/types";
+import type { CalendarItem, EventItem } from "../../services/google/types";
 import type { EventType } from "../../types";
 
 type Props = {
@@ -12,6 +12,7 @@ type Props = {
   selectedCalendars: Array<CalendarItem["id"]>,
   onSelectedCalendar: (calendarId: CalendarItem["id"]) => void,
   onLoadNextWeek: () => void,
+  onNavigateToEvent: (calendarId: CalendarItem["id"], eventId: EventItem["id"]) => void,
 };
 
 const Home: FC<Props> = ({
@@ -21,6 +22,7 @@ const Home: FC<Props> = ({
   selectedCalendars,
   onSelectedCalendar,
   onLoadNextWeek,
+  onNavigateToEvent,
 }) => {
   return (
     <>
@@ -32,7 +34,7 @@ const Home: FC<Props> = ({
       <HorizontalDivider/>
       {isLoading
         ? <LoadingSpinner/>
-        : <Events events={events} onLoadNextWeek={onLoadNextWeek} />
+        : <Events events={events} onLoadNextWeek={onLoadNextWeek} onNavigateToEvent={onNavigateToEvent} />
       }
     </>
   );

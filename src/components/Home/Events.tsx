@@ -4,6 +4,7 @@ import map from "lodash/map";
 import { P3, H1 } from "@deskpro/deskpro-ui";
 import { HorizontalDivider } from "@deskpro/app-sdk";
 import { getMapFilteredEventsByDay } from "../../utils";
+import { DAY_FORMAT } from "../../constants";
 import { format } from "../../utils/date";
 import { Container } from "../common";
 import { Event } from "./Event";
@@ -14,9 +15,10 @@ import type { EventType } from "../../types";
 type Props = {
   events: EventType[],
   onLoadNextWeek: () => void,
+  onNavigateToEvent: (calendarId: EventType["calendarId"], eventId: EventType["id"]) => void,
 };
 
-const Events: FC<Props> = ({ events, onLoadNextWeek }) => {
+const Events: FC<Props> = ({ events, onLoadNextWeek, onNavigateToEvent }) => {
   const mapFilteredEvents = useMemo(() => getMapFilteredEventsByDay(events), [events]);
 
   return (size(events) === 0)
@@ -30,8 +32,8 @@ const Events: FC<Props> = ({ events, onLoadNextWeek }) => {
         {map(mapFilteredEvents, (value, day) => (
           <Fragment key={day}>
             <Container>
-              <H1 style={{ marginBottom: 14 }}>{format(day)}</H1>
-              {value.map((event) => <Event key={event.id} {...event} />)}
+              <H1 style={{ marginBottom: 14 }}>{format(day, DAY_FORMAT)}</H1>
+              {value.map((event) => <Event key={event.id} {...event} onNavigateToEvent={onNavigateToEvent} />)}
             </Container>
             <HorizontalDivider style={{ marginBottom: 10 }}/>
           </Fragment>
