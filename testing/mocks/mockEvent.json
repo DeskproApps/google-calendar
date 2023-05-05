@@ -1,0 +1,64 @@
+{
+  "kind": "calendar#event",
+  "etag": "etag001",
+  "id": "001",
+  "status": "confirmed",
+  "htmlLink": "https://www.google.com/calendar/event?eid=001",
+  "created": "2023-04-24T08:36:21.000Z",
+  "updated": "2023-04-27T08:55:01.095Z",
+  "summary": "Apps Stand Up",
+  "description": "this is description",
+  "location": "this is location",
+  "creator": {
+    "email": "ilia.makarov@gmail.com",
+    "self": true
+  },
+  "organizer": {
+    "email": "dan@domain.com"
+  },
+  "start": {
+    "dateTime": "2023-05-05T11:40:00+03:00",
+    "timeZone": "Europe/Kiev"
+  },
+  "end": {
+    "dateTime": "2023-05-05T11:50:00+03:00",
+    "timeZone": "Europe/Kiev"
+  },
+  "recurringEventId": "001",
+  "originalStartTime": {
+    "dateTime": "2023-05-05T11:40:00+03:00",
+    "timeZone": "Europe/Kiev"
+  },
+  "sequence": 2,
+  "attendees": [
+    {
+      "self": true,
+      "email": "xzpawnx@email.com",
+      "responseStatus": "accepted"
+    },
+    {
+      "email": "david@domain.com",
+      "responseStatus": "declined"
+    },
+    {
+      "email": "ash@email.com",
+      "responseStatus": "tentative"
+    },
+    {
+      "email": "dan@email.com",
+      "organizer": true,
+      "responseStatus": "needsAction"
+    }
+  ],
+  "extendedProperties": {
+    "private": {
+      "private:iCalDtStamp": "1682584629000"
+    }
+  },
+  "guestsCanInviteOthers": false,
+  "privateCopy": true,
+  "reminders": {
+    "useDefault": true
+  },
+  "eventType": "default"
+}

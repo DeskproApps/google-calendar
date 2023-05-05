@@ -1,0 +1,1 @@
+export { CalendarLogo } from "./CalendarLogo";

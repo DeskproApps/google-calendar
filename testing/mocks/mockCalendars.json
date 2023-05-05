@@ -1,7 +1,7 @@
 {
   "kind": "calendar#calendarList",
-  "etag": "\"p33cahj7kij3vs0g\"",
-  "nextSyncToken": "CNiozPSUx_4CEhF4enBhd254QGdtYWlsLmNvbQ==",
+  "etag": "\"p32g9t3nrkjafs0g\"",
+  "nextSyncToken": "CKCejvuk1P4CEhF4enBhd254QGdtYWlsLmNvbQ==",
   "items": [
     {
       "kind": "calendar#calendarListEntry",
@@ -41,46 +41,6 @@
         ]
       },
       "primary": true,
-      "conferenceProperties": {
-        "allowedConferenceSolutionTypes": [
-          "hangoutsMeet"
-        ]
-      }
-    },
-    {
-      "kind": "calendar#calendarListEntry",
-      "etag": "\"1680683405367000\"",
-      "id": "ru.ukrainian#holiday@group.v.calendar.google.com",
-      "summary": "Праздники Украины",
-      "description": "Праздники и памятные даты Украины",
-      "timeZone": "Europe/Kiev",
-      "summaryOverride": "Праздники Украины",
-      "colorId": "7",
-      "backgroundColor": "#42d692",
-      "foregroundColor": "#000000",
-      "selected": true,
-      "accessRole": "reader",
-      "defaultReminders": [],
-      "conferenceProperties": {
-        "allowedConferenceSolutionTypes": [
-          "hangoutsMeet"
-        ]
-      }
-    },
-    {
-      "kind": "calendar#calendarListEntry",
-      "etag": "\"1680683405913000\"",
-      "id": "addressbook#contacts@group.v.calendar.google.com",
-      "summary": "Birthdays",
-      "description": "Displays birthdays, anniversaries and other event dates of people in Google Contacts.",
-      "timeZone": "Europe/Kiev",
-      "summaryOverride": "Contacts",
-      "colorId": "13",
-      "backgroundColor": "#92e1c0",
-      "foregroundColor": "#000000",
-      "selected": true,
-      "accessRole": "reader",
-      "defaultReminders": [],
       "conferenceProperties": {
         "allowedConferenceSolutionTypes": [
           "hangoutsMeet"
@@ -129,13 +89,54 @@
     },
     {
       "kind": "calendar#calendarListEntry",
-      "etag": "\"1682081352655000\"",
-      "id": "andersen.kharkov@gmail.com",
-      "summary": "andersen.kharkov@gmail.com",
+      "etag": "\"1682670611440000\"",
+      "id": "addressbook#contacts@group.v.calendar.google.com",
+      "summary": "Birthdays",
+      "description": "Displays birthdays, anniversaries and other event dates of people in Google Contacts.",
       "timeZone": "Europe/Kiev",
-      "colorId": "9",
-      "backgroundColor": "#7bd148",
+      "summaryOverride": "Contacts",
+      "colorId": "13",
+      "backgroundColor": "#92e1c0",
       "foregroundColor": "#000000",
+      "selected": true,
+      "accessRole": "reader",
+      "defaultReminders": [],
+      "conferenceProperties": {
+        "allowedConferenceSolutionTypes": [
+          "hangoutsMeet"
+        ]
+      }
+    },
+    {
+      "kind": "calendar#calendarListEntry",
+      "etag": "\"1682674685447000\"",
+      "id": "en-gb.uk#holiday@group.v.calendar.google.com",
+      "summary": "Holidays in the United Kingdom",
+      "description": "Holidays and Observances in the United Kingdom",
+      "timeZone": "Europe/Kiev",
+      "colorId": "4",
+      "backgroundColor": "#fa573c",
+      "foregroundColor": "#000000",
+      "selected": true,
+      "accessRole": "reader",
+      "defaultReminders": [],
+      "conferenceProperties": {
+        "allowedConferenceSolutionTypes": [
+          "hangoutsMeet"
+        ]
+      }
+    },
+    {
+      "kind": "calendar#calendarListEntry",
+      "etag": "\"1682674689631000\"",
+      "id": "en-gb.ukrainian#holiday@group.v.calendar.google.com",
+      "summary": "Holidays in Ukraine",
+      "description": "Holidays and Observances in Ukraine",
+      "timeZone": "Europe/Kiev",
+      "colorId": "12",
+      "backgroundColor": "#fad165",
+      "foregroundColor": "#000000",
+      "selected": true,
       "accessRole": "reader",
       "defaultReminders": [],
       "conferenceProperties": {

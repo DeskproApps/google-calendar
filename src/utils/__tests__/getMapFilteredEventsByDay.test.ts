@@ -1,0 +1,325 @@
+import { getMapFilteredEventsByDay } from "../getMapFilteredEventsByDay";
+import mockEvents from "../../../testing/mocks/mockEvents.json";
+
+describe("getMapFilteredEventsByDay", () => {
+  test("should return empty map", () => {
+    expect(getMapFilteredEventsByDay([])).toEqual({});
+    expect(getMapFilteredEventsByDay()).toEqual({});
+  });
+
+  test("should return map filtered events by day", () => {
+    expect(getMapFilteredEventsByDay(mockEvents)).toEqual({
+      "2021-02-15T00:00:00.000Z": [
+        {
+          "id": "012",
+          "summary": "English",
+          "htmlLink": "https://www.google.com/calendar/event?eid=012",
+          "start": {
+            "dateTime": "2021-02-15T09:00:00+02:00",
+            "timeZone": "Europe/Kiev"
+          },
+          "end": {
+            "dateTime": "2021-02-15T10:00:00+02:00",
+            "timeZone": "Europe/Kiev"
+          },
+          "calendarId": "calendar001",
+          "calendarSummary": "Activities"
+        },
+        {
+          "id": "017",
+          "summary": "Work",
+          "htmlLink": "https://www.google.com/calendar/event?eid=017",
+          "start": {
+            "dateTime": "2021-02-15T10:00:00+02:00",
+            "timeZone": "Europe/Kiev"
+          },
+          "end": {
+            "dateTime": "2021-02-15T19:00:00+02:00",
+            "timeZone": "Europe/Kiev"
+          },
+          "calendarId": "calendar001",
+          "calendarSummary": "Activities"
+        },
+        {
+          "id": "010",
+          "summary": "Prelb.",
+          "htmlLink": "https://www.google.com/calendar/event?eid=010",
+          "start": {
+            "dateTime": "2021-02-15T20:00:00+02:00",
+            "timeZone": "Europe/Kiev"
+          },
+          "end": {
+            "dateTime": "2021-02-15T22:00:00+02:00",
+            "timeZone": "Europe/Kiev"
+          },
+          "calendarId": "calendar001",
+          "calendarSummary": "Activities"
+        },
+      ],
+      "2021-02-16T00:00:00.000Z": [
+        {
+          "id": "016",
+          "summary": "Way to work",
+          "htmlLink": "https://www.google.com/calendar/event?eid=016",
+          "start": {
+            "dateTime": "2021-02-16T08:00:00+02:00",
+            "timeZone": "Europe/Kiev"
+          },
+          "end": {
+            "dateTime": "2021-02-16T09:00:00+02:00",
+            "timeZone": "Europe/Kiev"
+          },
+          "calendarId": "calendar001",
+          "calendarSummary": "Activities"
+        },
+        {
+          "id": "018",
+          "summary": "Work",
+          "htmlLink": "https://www.google.com/calendar/event?eid=018",
+          "start": {
+            "dateTime": "2021-02-16T09:00:00+02:00",
+            "timeZone": "Europe/Kiev"
+          },
+          "end": {
+            "dateTime": "2021-02-16T19:00:00+02:00",
+            "timeZone": "Europe/Kiev"
+          },
+          "calendarId": "calendar001",
+          "calendarSummary": "Activities"
+        },
+        {
+          "id": "009",
+          "summary": "Психотерапевт",
+          "htmlLink": "https://www.google.com/calendar/event?eid=009",
+          "start": {
+            "dateTime": "2021-02-16T19:00:00+02:00",
+            "timeZone": "Europe/Kiev"
+          },
+          "end": {
+            "dateTime": "2021-02-16T20:00:00+02:00",
+            "timeZone": "Europe/Kiev"
+          },
+          "calendarId": "calendar001",
+          "calendarSummary": "Activities"
+        },
+        {
+          "id": "014",
+          "summary": "Way home",
+          "htmlLink": "https://www.google.com/calendar/event?eid=014",
+          "start": {
+            "dateTime": "2021-02-16T20:00:00+02:00",
+            "timeZone": "Europe/Kiev"
+          },
+          "end": {
+            "dateTime": "2021-02-16T21:00:00+02:00",
+            "timeZone": "Europe/Kiev"
+          },
+          "calendarId": "calendar001",
+          "calendarSummary": "Activities"
+        },
+        {
+          "id": "013",
+          "summary": "English. Homework.",
+          "htmlLink": "https://www.google.com/calendar/event?eid=013",
+          "start": {
+            "dateTime": "2021-02-16T21:00:00+02:00",
+            "timeZone": "Europe/Kiev"
+          },
+          "end": {
+            "dateTime": "2021-02-16T22:00:00+02:00",
+            "timeZone": "Europe/Kiev"
+          },
+          "calendarId": "calendar001",
+          "calendarSummary": "Activities"
+        },
+      ],
+      "2021-02-17T00:00:00.000Z": [
+        {
+          "id": "011",
+          "summary": "Prelb.",
+          "htmlLink": "https://www.google.com/calendar/event?eid=011",
+          "start": {
+            "dateTime": "2021-02-17T20:00:00+02:00",
+            "timeZone": "Europe/Kiev"
+          },
+          "end": {
+            "dateTime": "2021-02-17T22:00:00+02:00",
+            "timeZone": "Europe/Kiev"
+          },
+          "calendarId": "calendar001",
+          "calendarSummary": "Activities"
+        },
+      ],
+      "2021-02-18T00:00:00.000Z": [
+        {
+          "id": "015",
+          "summary": "Way home",
+          "htmlLink": "https://www.google.com/calendar/event?eid=015",
+          "start": {
+            "dateTime": "2021-02-18T19:00:00+02:00",
+            "timeZone": "Europe/Kiev"
+          },
+          "end": {
+            "dateTime": "2021-02-18T20:00:00+02:00",
+            "timeZone": "Europe/Kiev"
+          },
+          "calendarId": "calendar001",
+          "calendarSummary": "Activities"
+        },
+      ],
+      "2021-02-19T00:00:00.000Z": [
+        {
+          "id": "019",
+          "summary": "Work",
+          "htmlLink": "https://www.google.com/calendar/event?eid=019",
+          "start": {
+            "dateTime": "2021-02-19T10:00:00+02:00",
+            "timeZone": "Europe/Kiev"
+          },
+          "end": {
+            "dateTime": "2021-02-19T19:00:00+02:00",
+            "timeZone": "Europe/Kiev"
+          },
+          "calendarId": "calendar001",
+          "calendarSummary": "Activities"
+        },
+      ],
+      "2022-06-14T00:00:00.000Z": [
+        {
+          "id": "001",
+          "summary": "Ilia",
+          "htmlLink": "https://www.google.com/calendar/event?eid=001",
+          "start": {
+            "dateTime": "2022-06-14T18:00:00+03:00",
+            "timeZone": "Europe/Kiev"
+          },
+          "end": {
+            "dateTime": "2022-06-14T19:00:00+03:00",
+            "timeZone": "Europe/Kiev"
+          },
+          "calendarId": "calendar002",
+          "calendarSummary": "xzpawnx@gmail.com"
+        },
+      ],
+      "2022-07-21T00:00:00.000Z": [
+        {
+          "id": "002",
+          "summary": "Ilia",
+          "htmlLink": "https://www.google.com/calendar/event?eid=002",
+          "start": {
+            "dateTime": "2022-07-21T18:00:00+03:00",
+            "timeZone": "Europe/Kiev"
+          },
+          "end": {
+            "dateTime": "2022-07-21T19:00:00+03:00",
+            "timeZone": "Europe/Kiev"
+          },
+          "calendarId": "calendar002",
+          "calendarSummary": "xzpawnx@gmail.com"
+        },
+      ],
+      "2023-04-05T00:00:00.000Z": [
+        {
+          "id": "005",
+          "summary": "All-Hands Engineering Stand Up",
+          "htmlLink": "https://www.google.com/calendar/event?eid=005",
+          "start": {
+            "dateTime": "2023-04-05T11:30:00+03:00",
+            "timeZone": "Europe/Kiev"
+          },
+          "end": {
+            "dateTime": "2023-04-05T12:00:00+03:00",
+            "timeZone": "Europe/Kiev"
+          },
+          "calendarId": "calendar002",
+          "calendarSummary": "xzpawnx@gmail.com"
+        },
+      ],
+      "2023-04-19T00:00:00.000Z": [
+        {
+          "id": "003",
+          "summary": "All-Hands Engineering Stand Up",
+          "htmlLink": "https://www.google.com/calendar/event?eid=003",
+          "start": {
+            "dateTime": "2023-04-19T11:30:00+03:00",
+            "timeZone": "Europe/Kiev"
+          },
+          "end": {
+            "dateTime": "2023-04-19T12:00:00+03:00",
+            "timeZone": "Europe/Kiev"
+          },
+          "calendarId": "calendar002",
+          "calendarSummary": "xzpawnx@gmail.com"
+        },
+      ],
+      "2023-04-24T00:00:00.000Z": [
+        {
+          "id": "006",
+          "summary": "Apps Stand Up",
+          "htmlLink": "https://www.google.com/calendar/event?eid=006",
+          "start": {
+            "dateTime": "2023-04-24T11:40:00+03:00",
+            "timeZone": "Europe/Kiev"
+          },
+          "end": {
+            "dateTime": "2023-04-24T11:50:00+03:00",
+            "timeZone": "Europe/Kiev"
+          },
+          "calendarId": "calendar002",
+          "calendarSummary": "xzpawnx@gmail.com"
+        },
+      ],
+      "2023-05-01T00:00:00.000Z": [
+        {
+          "id": "004",
+          "summary": "Driving. Practice.",
+          "htmlLink": "https://www.google.com/calendar/event?eid=004",
+          "start": {
+            "dateTime": "2023-05-01T15:30:00+03:00",
+            "timeZone": "Europe/Kiev"
+          },
+          "end": {
+            "dateTime": "2023-05-01T17:00:00+03:00",
+            "timeZone": "Europe/Kiev"
+          },
+          "calendarId": "calendar002",
+          "calendarSummary": "xzpawnx@gmail.com"
+        },
+      ],
+      "2023-05-03T00:00:00.000Z": [
+        {
+          "id": "008",
+          "summary": "Driving. Practice.",
+          "htmlLink": "https://www.google.com/calendar/event?eid=008",
+          "start": {
+            "dateTime": "2023-05-03T16:15:00+03:00",
+            "timeZone": "Europe/Kiev"
+          },
+          "end": {
+            "dateTime": "2023-05-03T17:45:00+03:00",
+            "timeZone": "Europe/Kiev"
+          },
+          "calendarId": "calendar002",
+          "calendarSummary": "xzpawnx@gmail.com"
+        },
+      ],
+      "2023-05-06T00:00:00.000Z": [
+        {
+          "id": "007",
+          "summary": "Driving. Practice.",
+          "htmlLink": "https://www.google.com/calendar/event?eid=007",
+          "start": {
+            "dateTime": "2023-05-06T14:00:00+03:00",
+            "timeZone": "Europe/Kiev"
+          },
+          "end": {
+            "dateTime": "2023-05-06T17:00:00+03:00",
+            "timeZone": "Europe/Kiev"
+          },
+          "calendarId": "calendar002",
+          "calendarSummary": "xzpawnx@gmail.com"
+        },
+      ],
+    });
+  });
+});

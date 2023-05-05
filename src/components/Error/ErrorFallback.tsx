@@ -29,6 +29,7 @@ const ErrorFallback: FC<Props> = ({ error, resetErrorBoundary }) => {
     const { status, data } = error;
 
     switch (status) {
+      case 401:
       case 403:
         message = get(data, ["error", "message"], message);
         button = <Button text="Log In" intent="secondary" onClick={toLogin} />;
