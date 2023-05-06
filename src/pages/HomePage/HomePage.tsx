@@ -56,6 +56,8 @@ const HomePage: FC = () => {
     });
   }, [navigate]);
 
+  const onNavigateToCreateEvent = useCallback(() => navigate("/event/create"), [navigate]);
+
   useSetTitle("Google Calendar");
 
   useDeskproElements(({ registerElement, clearElements }) => {
@@ -97,6 +99,7 @@ const HomePage: FC = () => {
       onSelectedCalendar={onSelectedCalendar}
       onLoadNextWeek={onLoadNextWeek}
       onNavigateToEvent={onNavigateToEvent}
+      onNavigateToCreateEvent={onNavigateToCreateEvent}
     />
   );
 };

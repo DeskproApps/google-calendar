@@ -7,3 +7,4 @@ export { getCalendarsService } from "./getCalendarsService";
 export { revokeAccessTokenService } from "./revokeAccessTokenService";
 export { getEventService } from "./getEventService";
 export { getEventsService } from "./getEventsService";
+export { createEventService } from "./createEventService";

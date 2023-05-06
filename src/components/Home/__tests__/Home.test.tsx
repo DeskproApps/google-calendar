@@ -42,6 +42,7 @@ describe("Home", () => {
         onSelectedCalendar={jest.fn()}
         onLoadNextWeek={jest.fn()}
         onNavigateToEvent={jest.fn()}
+        onNavigateToCreateEvent={jest.fn()}
       />
     ), { wrappers: { theme: true } });
 
@@ -59,6 +60,7 @@ describe("Home", () => {
         onSelectedCalendar={jest.fn()}
         onLoadNextWeek={jest.fn()}
         onNavigateToEvent={jest.fn()}
+        onNavigateToCreateEvent={jest.fn()}
       />
     ), { wrappers: { theme: true } });
 
@@ -79,6 +81,7 @@ describe("Home", () => {
         onSelectedCalendar={jest.fn()}
         onLoadNextWeek={mockOnLoadNextWeek}
         onNavigateToEvent={jest.fn()}
+        onNavigateToCreateEvent={jest.fn()}
       />
     ), { wrappers: { theme: true } });
 
@@ -103,6 +106,7 @@ describe("Home", () => {
         onSelectedCalendar={jest.fn()}
         onLoadNextWeek={jest.fn()}
         onNavigateToEvent={mockOnNavigateToEvent}
+        onNavigateToCreateEvent={jest.fn()}
       />
     ), { wrappers: { theme: true } });
 
@@ -114,4 +118,6 @@ describe("Home", () => {
       expect(mockOnNavigateToEvent).toHaveBeenCalled();
     });
   });
+
+  test.todo("should navigate to event creation");
 });
