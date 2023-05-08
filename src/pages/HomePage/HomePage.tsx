@@ -6,7 +6,11 @@ import isEmpty from "lodash/isEmpty";
 import size from "lodash/size";
 import endOfWeek from "date-fns/fp/endOfWeekWithOptions";
 import addWeeks from "date-fns/addWeeks";
-import { useNavigate, createSearchParams } from "react-router-dom";
+import {
+  useNavigate,
+  useSearchParams,
+  createSearchParams,
+} from "react-router-dom";
 import {
   useDeskproElements,
   useDeskproAppClient,
@@ -21,14 +25,14 @@ import {
 import { getFilteredEvents } from "../../utils";
 import { Home } from "../../components";
 import type { FC } from "react";
-import type { DateTime } from "../../types";
 import type { CalendarItem, EventItem } from "../../services/google/types";
 
 const HomePage: FC = () => {
   const navigate = useNavigate();
+  const [searchParams, setSearchParams] = useSearchParams();
   const { client } = useDeskproAppClient();
   const [selectedCalendarIds, setSelectedCalendarIds] = useState<Array<CalendarItem["id"]>>([]);
-  const [timeMax, setTimeMax] = useState<DateTime>(endOfWeek({ weekStartsOn: 1 }, new Date()).toISOString());
+  const timeMax = searchParams.get("timeMax") || endOfWeek({ weekStartsOn: 1 }, new Date()).toISOString();
   const { calendars, isLoading, events } = useCalendars(timeMax);
 
   const onSelectedCalendar = useCallback((selectCalendarId: CalendarItem["id"]) => {
@@ -43,8 +47,11 @@ const HomePage: FC = () => {
   }, [client, selectedCalendarIds]);
 
   const onLoadNextWeek = useCallback(() => {
-    setTimeMax(endOfWeek({ weekStartsOn: 1 }, addWeeks(new Date(timeMax), 1)).toISOString());
-  }, [timeMax]);
+    const plusOneWeek = addWeeks(new Date(timeMax), 1);
+    setSearchParams([
+      ["timeMax", endOfWeek({ weekStartsOn: 1 }, plusOneWeek).toISOString()]
+    ]);
+  }, [timeMax, setSearchParams]);
 
   const onNavigateToEvent = useCallback((calendarId: CalendarItem["id"], eventId: EventItem["id"]) => {
     navigate({
