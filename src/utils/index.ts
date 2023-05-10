@@ -5,3 +5,4 @@ export { getFilteredEvents } from "./getFilteredEvents";
 export { getFilteredDaysFromEvents } from "./getFilteredDaysFromEvents";
 export { getMapFilteredEventsByDay } from "./getMapFilteredEventsByDay";
 export { mdToHtml, linkRenderer } from "./mdToHtml";
+export { getCurrentTimeZone } from "./getCurrentTimeZone";

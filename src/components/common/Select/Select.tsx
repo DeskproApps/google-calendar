@@ -19,7 +19,7 @@ import type { DropdownTargetProps, DropdownProps } from "@deskpro/app-sdk";
 import type { Option } from "../../../types";
 import size from "lodash/size";
 
-type Props<T> = Pick<DropdownProps<T, HTMLElement>, "closeOnSelect"|"containerHeight"|"containerMaxHeight"> & {
+type Props<T> = Pick<DropdownProps<T, HTMLElement>, "closeOnSelect"|"containerHeight"|"containerMaxHeight"|"placement"> & {
   id: string;
   error?: DivAsInputWithDisplayProps["error"];
   value?: T | T[];

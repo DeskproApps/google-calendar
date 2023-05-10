@@ -52,6 +52,7 @@ specifiers:
   react-router-dom: ^6.10.0
   rimraf: ^3.0.2
   rollup-plugin-copy: 3.4.0
+  rrule: ^2.7.2
   showdown: ^2.1.0
   slugify: ^1.6.5
   styled-components: ^5.3.6
@@ -83,6 +84,7 @@ dependencies:
   react-hook-form: 7.43.9_react@18.2.0
   react-is: 18.2.0
   react-router-dom: 6.10.0_biqbaboplfbrettd7655fr4n2y
+  rrule: 2.7.2
   showdown: 2.1.0
   styled-components: 5.3.6_7i5myeigehqah43i5u7wbekgba
   ts-pattern: 4.2.2
@@ -4720,6 +4722,12 @@ packages:
     optionalDependencies:
       fsevents: 2.3.2
     dev: true
+
+  /rrule/2.7.2:
+    resolution: {integrity: sha512-NkBsEEB6FIZOZ3T8frvEBOB243dm46SPufpDckY/Ap/YH24V1zLeMmDY8OA10lk452NdrF621+ynDThE7FQU2A==}
+    dependencies:
+      tslib: 2.4.1
+    dev: false
 
   /run-parallel/1.2.0:
     resolution: {integrity: sha512-5l4VyZR86LZ/lDxZTR6jqL8AFE2S0IFLMP26AbjsLVADxHdhB/c0GUsH+y39UfCi3dzz8OlQuPmnaJOMoDHQBA==}

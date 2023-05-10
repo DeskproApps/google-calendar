@@ -12,9 +12,23 @@ export type EventMeetingValues = {
   description?: Event["description"],
   location?: Event["location"],
   attendees?: Event["attendees"],
+  recurrence?: string[],
 };
 
 export type EventFormProps = {
+  error?: string|string[]|null,
   onSubmit: SubmitHandler<EventFormValidationSchema>,
   onCancel: () => void,
 };
+
+export type RecurrenceTypes =
+  | 1 // Daily
+  | 2 // Weekly
+  | 3 // Monthly
+;
+
+export enum Recurrence {
+  DAILY = 1,
+  WEEKLY = 2,
+  MONTHLY = 3,
+}

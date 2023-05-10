@@ -1,7 +1,7 @@
 export { baseRequest } from "./baseRequest";
 export { GoogleAPIError } from "./GoogleAPIError";
 export { getAccessTokenService } from "./getAccessTokenService";
-export { isAccessToken } from "./utils";
+export { isAccessToken, isGoogleRestError } from "./utils";
 export { getCalendarService } from "./getCalendarService";
 export { getCalendarsService } from "./getCalendarsService";
 export { revokeAccessTokenService } from "./revokeAccessTokenService";

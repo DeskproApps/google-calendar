@@ -25,7 +25,7 @@ export type User = {
 export type EventDateTime = {
   date?: DateType,
   dateTime: DateTime
-  timeZone?: string,
+  timeZone: string,
 };
 
 export type Attendee = {
