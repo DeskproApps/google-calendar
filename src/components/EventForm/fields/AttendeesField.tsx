@@ -5,20 +5,24 @@ import { faClose } from "@fortawesome/free-solid-svg-icons";
 import get from "lodash/get";
 import { Stack, Input, IconButton, RoundedLabelTag } from "@deskpro/deskpro-ui";
 import { useDeskproAppTheme } from "@deskpro/app-sdk";
-import type { FC, KeyboardEvent } from "react";
+import type { FC, KeyboardEvent, ChangeEvent } from "react";
 import type { AnyIcon } from "@deskpro/deskpro-ui";
 
 type Props = {
-  id: string,
-  error: boolean,
   value: string[],
   onChange: (attendees: string[]) => void,
+  id?: string,
+  error?: boolean,
 };
 
-const AttendeesField: FC<Props> = ({ error, onChange, value }) => {
+const AttendeesField: FC<Props> = ({ onChange, value, id = "attendees", error = false }) => {
   const { theme } = useDeskproAppTheme();
   const [isError, setIsError] = useState<boolean>();
-  const [input, setInput] = useState<string>();
+  const [input, setInput] = useState<string>("");
+
+  const onChangeInput = useCallback((e: ChangeEvent<HTMLInputElement>) => {
+    setInput(e.target.value);
+  }, []);
 
   const onClearInput = useCallback(() => setInput(""), []);
 
@@ -59,6 +63,8 @@ const AttendeesField: FC<Props> = ({ error, onChange, value }) => {
         ))}
       </Stack>
       <Input
+        id={id}
+        name={id}
         type="text"
         value={input}
         variant="inline"
@@ -67,7 +73,7 @@ const AttendeesField: FC<Props> = ({ error, onChange, value }) => {
         placeholder="Enter email"
         onKeyDown={onKeyDownEnter}
         style={{ paddingRight: 0 }}
-        onChange={(e) => setInput(e.target.value)}
+        onChange={onChangeInput}
         rightIcon={(
           <IconButton minimal onClick={onClearInput} icon={faClose as AnyIcon} />
         )}

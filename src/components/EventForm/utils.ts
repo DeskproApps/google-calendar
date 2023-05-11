@@ -1,6 +1,7 @@
 import size from "lodash/size";
 import range from "lodash/range";
 import isEmpty from "lodash/isEmpty";
+import isPlainObject from "lodash/isPlainObject";
 import { match } from "ts-pattern";
 import { z } from "zod";
 import { RRule } from "rrule";
@@ -64,13 +65,19 @@ const getInitEventValues = () => ({
 /**
  * @see https://datatracker.ietf.org/doc/html/rfc5545#section-3.8.5
  */
-const toICalendarRFC = ({
-  occursWeekly,
-  recurringType,
-  occursMonthly,
-  repeatInterval,
-  dailyEndDatetime,
-}: EventFormValidationSchema): string[] => {
+const toICalendarRFC = (options: EventFormValidationSchema): string[] => {
+  if (isEmpty(options) || !isPlainObject(options)) {
+    return [];
+  }
+
+  const {
+    occursWeekly,
+    recurringType,
+    occursMonthly,
+    repeatInterval,
+    dailyEndDatetime,
+  } = options;
+
   return match(recurringType)
     .with(Recurrence.DAILY, () => [RRule.optionsToString({
       freq: RRule.DAILY,
@@ -145,6 +152,7 @@ const getOccursMonthlyOptions = () => {
 
 export {
   getEventValues,
+  toICalendarRFC,
   getInitEventValues,
   eventValidationSchema,
   getOccursMonthlyOptions,
