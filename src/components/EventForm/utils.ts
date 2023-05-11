@@ -123,10 +123,8 @@ const getEventValues = (
     summary: values.summary,
     ...(isEmpty(values.description) ? {} : { description: values.description }),
     ...(isEmpty(values.location) ? {} : { location: values.location }),
-    ...(isEmpty(values.attendees) ? {} : {
-      attendees: values.attendees.map((email) => ({ email }))
-    }),
-    recurrence: toICalendarRFC(values),
+    ...(isEmpty(values.attendees) ? {} : { attendees: values.attendees.map((email) => ({ email })) }),
+    ...(!values.recurring ? {} : { recurrence: toICalendarRFC(values) })
   }
 };
 

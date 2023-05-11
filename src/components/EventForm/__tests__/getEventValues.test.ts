@@ -20,7 +20,6 @@ describe("getEventValues", () => {
       summary: "Test simple event",
       start: { dateTime: "2023-05-11T09:00:00.000Z", timeZone: "Europe/Kiev" },
       end: { dateTime: "2023-05-12T09:00:00.000Z", timeZone: "Europe/Kiev" },
-      recurrence: [],
     });
   });
 
@@ -40,7 +39,6 @@ describe("getEventValues", () => {
       description: "this is description",
       location: "https://location.url",
       attendees: [{ email: "lesia.ukrainka@me.ua" }],
-      recurrence: []
     });
   });
 
