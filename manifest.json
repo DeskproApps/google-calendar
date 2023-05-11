@@ -4,8 +4,8 @@
   "description": "View, create, and schedule future events with your users.",
   "version": "1.0.1",
   "scope": "agent",
-  "isSingleInstall": false,
   "hasDevMode": true,
+  "isSingleInstall": false,
   "targets": [{ "target": "ticket_sidebar", "entrypoint": "index.html" }],
   "settings": {
     "client_id": {
