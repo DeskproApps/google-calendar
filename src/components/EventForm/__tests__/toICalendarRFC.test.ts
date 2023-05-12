@@ -11,7 +11,7 @@ describe("toICalendarRFC", () => {
     const options = {
       recurringType: 1,
       repeatInterval: 1,
-      dailyEndDatetime: new Date("2023-06-12T18:00:00.000Z"),
+      endRecurrenceDatetime: new Date("2023-06-12T18:00:00.000Z"),
     };
 
     test("should return daily event", () => {
@@ -25,7 +25,7 @@ describe("toICalendarRFC", () => {
     });
 
     test("should return daily event without end datetime", () => {
-      expect(toICalendarRFC({ ...options, dailyEndDatetime: null } as never))
+      expect(toICalendarRFC({ ...options, endRecurrenceDatetime: null } as never))
         .toEqual(["RRULE:FREQ=DAILY;INTERVAL=1"]);
     });
   });

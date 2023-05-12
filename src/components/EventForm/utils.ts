@@ -10,8 +10,8 @@ import { DAYS } from "./constants";
 import {
   occursWeeklyValidator,
   occursMonthlyValidator,
-  dailyDatetimeValidator,
   repeatIntervalValidator,
+  endRecurrenceDatetimeValidator,
 } from "./validators";
 import { Recurrence } from "./types";
 import type { Option } from "../../types";
@@ -31,7 +31,7 @@ const eventValidationSchema = z.object({
   attendees: z.array(z.string().email()),
   recurringType: z.number().min(1).max(3).optional(),
   repeatInterval: z.number().optional(),
-  dailyEndDatetime: z.date().optional(),
+  endRecurrenceDatetime: z.date().optional(),
   occursWeekly: z.number().array().optional(),
   occursMonthly: z.number().optional(),
 })
@@ -39,9 +39,9 @@ const eventValidationSchema = z.object({
     message: "Wrong interval",
     path: ["repeatInterval"],
   })
-  .refine(dailyDatetimeValidator, {
+  .refine(endRecurrenceDatetimeValidator, {
     message: "The end recurrence date must be after the start or end event date",
-    path: ["dailyEndDatetime"],
+    path: ["endRecurrenceDatetime"],
   })
   .refine(occursWeeklyValidator, {
     message: "Occurs require",
@@ -75,18 +75,19 @@ const toICalendarRFC = (options: EventFormValidationSchema): string[] => {
     recurringType,
     occursMonthly,
     repeatInterval,
-    dailyEndDatetime,
+    endRecurrenceDatetime,
   } = options;
 
   return match(recurringType)
     .with(Recurrence.DAILY, () => [RRule.optionsToString({
       freq: RRule.DAILY,
       interval: repeatInterval,
-      until: dailyEndDatetime,
+      until: endRecurrenceDatetime,
     })])
     .with(Recurrence.WEEKLY, () => [RRule.optionsToString({
       freq: RRule.WEEKLY,
       interval: repeatInterval,
+      until: endRecurrenceDatetime,
       ...((Array.isArray(occursWeekly) && size(occursWeekly))
           ? { byweekday: occursWeekly.map((day) => match(day)
               .with(DAYS.Mon, () => RRule.MO)
@@ -104,6 +105,7 @@ const toICalendarRFC = (options: EventFormValidationSchema): string[] => {
       freq: RRule.MONTHLY,
       interval: repeatInterval,
       bymonthday: occursMonthly,
+      until: endRecurrenceDatetime,
     })])
     .otherwise(() => []);
 };

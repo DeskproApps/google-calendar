@@ -145,17 +145,6 @@ const EventForm: FC<EventFormProps> = ({ onSubmit, onCancel, error }) => {
         </Label>
       )}
 
-      {recurring && (recurringType === Recurrence.DAILY) && (
-        <Label htmlFor="dailyEndDatetime" label="End date" required>
-          <DateInput
-            id="dailyEndDatetime"
-            placeholder="DD/MM/YYYY at HH:mm"
-            error={has(errors, ["dailyEndDatetime", "message"])}
-            onChange={(date) => setValue("dailyEndDatetime", date[0])}
-          />
-        </Label>
-      )}
-
       {recurring && (recurringType === Recurrence.WEEKLY) && (
         <Label htmlFor="occursWeekly" label="Occurs on" required>
           <Select
@@ -193,6 +182,17 @@ const EventForm: FC<EventFormProps> = ({ onSubmit, onCancel, error }) => {
             options={getOccursMonthlyOptions()}
             error={has(errors, ["occursMonthly", "message"])}
             onChange={(o) => setValue("occursMonthly", o.value)}
+          />
+        </Label>
+      )}
+
+      {recurring && (
+        <Label htmlFor="endRecurrenceDatetime" label="End date" required>
+          <DateInput
+            id="endRecurrenceDatetime"
+            placeholder="DD/MM/YYYY at HH:mm"
+            error={has(errors, ["endRecurrenceDatetime", "message"])}
+            onChange={(date) => setValue("endRecurrenceDatetime", date[0])}
           />
         </Label>
       )}

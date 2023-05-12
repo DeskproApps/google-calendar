@@ -5,25 +5,25 @@ import { match } from "ts-pattern";
 import { Recurrence } from "./types";
 import { z } from "zod";
 
-const dailyDatetimeValidator = <T>(values: T): boolean => {
+const endRecurrenceDatetimeValidator = <T>(values: T): boolean => {
   const isRecurring = get(values, ["recurring"]);
   const startTime = get(values, ["startTime"]);
   const endTime = get(values, ["endTime"]);
-  const dailyEndDatetime = get(values, ["dailyEndDatetime"]);
+  const endRecurrenceDatetime = get(values, ["endRecurrenceDatetime"]);
 
   if (!isRecurring) {
     return true;
   }
 
-  if (!startTime || !endTime || !dailyEndDatetime) {
+  if (!startTime || !endTime || !endRecurrenceDatetime) {
     return false;
   }
 
-  if (!z.date().safeParse(dailyEndDatetime).success) {
+  if (!z.date().safeParse(endRecurrenceDatetime).success) {
     return false;
   }
 
-  return isAfter(dailyEndDatetime, startTime) && isAfter(dailyEndDatetime, endTime);
+  return isAfter(endRecurrenceDatetime, startTime) && isAfter(endRecurrenceDatetime, endTime);
 };
 
 const repeatIntervalValidator = <T>(values: T): boolean => {
@@ -62,5 +62,5 @@ export {
   occursWeeklyValidator,
   occursMonthlyValidator,
   repeatIntervalValidator,
-  dailyDatetimeValidator,
+  endRecurrenceDatetimeValidator,
 };
