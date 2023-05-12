@@ -70,7 +70,7 @@ const AttendeesField: FC<Props> = ({ onChange, value, id = "attendees", error = 
         variant="inline"
         inputsize="small"
         error={isError || error}
-        placeholder="Enter email"
+        placeholder="Enter email address and press enter"
         onKeyDown={onKeyDownEnter}
         style={{ paddingRight: 0 }}
         onChange={onChangeInput}
