@@ -42,6 +42,7 @@ describe("Home", () => {
         onSelectedCalendar={jest.fn()}
         onLoadNextWeek={jest.fn()}
         onNavigateToEvent={jest.fn()}
+        onNavigateToCreateEvent={jest.fn()}
       />
     ), { wrappers: { theme: true } });
 
@@ -59,6 +60,7 @@ describe("Home", () => {
         onSelectedCalendar={jest.fn()}
         onLoadNextWeek={jest.fn()}
         onNavigateToEvent={jest.fn()}
+        onNavigateToCreateEvent={jest.fn()}
       />
     ), { wrappers: { theme: true } });
 
@@ -79,6 +81,7 @@ describe("Home", () => {
         onSelectedCalendar={jest.fn()}
         onLoadNextWeek={mockOnLoadNextWeek}
         onNavigateToEvent={jest.fn()}
+        onNavigateToCreateEvent={jest.fn()}
       />
     ), { wrappers: { theme: true } });
 
@@ -103,6 +106,7 @@ describe("Home", () => {
         onSelectedCalendar={jest.fn()}
         onLoadNextWeek={jest.fn()}
         onNavigateToEvent={mockOnNavigateToEvent}
+        onNavigateToCreateEvent={jest.fn()}
       />
     ), { wrappers: { theme: true } });
 
@@ -112,6 +116,31 @@ describe("Home", () => {
 
     await waitFor(() => {
       expect(mockOnNavigateToEvent).toHaveBeenCalled();
+    });
+  });
+
+  test("should navigate to event creation", async () => {
+    const mockOnNavigateToCreateEvent = jest.fn();
+
+    const { findByRole } = render((
+      <Home
+        isLoading={false}
+        events={[]}
+        calendars={calendars as never}
+        selectedCalendars={[]}
+        onSelectedCalendar={jest.fn()}
+        onLoadNextWeek={jest.fn()}
+        onNavigateToEvent={jest.fn()}
+        onNavigateToCreateEvent={mockOnNavigateToCreateEvent}
+      />
+    ), { wrappers: { theme: true } });
+
+    const button = await findByRole("button", { name: "Create an event" });
+
+    await userEvent.click(button);
+
+    await waitFor(() => {
+      expect(mockOnNavigateToCreateEvent).toHaveBeenCalled();
     });
   });
 });

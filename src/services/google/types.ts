@@ -29,9 +29,9 @@ export type EventDateTime = {
 };
 
 export type Attendee = {
-  id: string,
+  id?: string,
   email: string,
-  responseStatus: "needsAction"|"declined"|"tentative"|"accepted",
+  responseStatus?: "needsAction"|"declined"|"tentative"|"accepted",
   displayName?: string,
   comment?: string,
   additionalGuests?: number,
@@ -42,6 +42,8 @@ export type Attendee = {
 };
 
 export type Reminder = { method: "email"|"popup", minutes: number };
+
+export type EventStatus = "confirmed"|"tentative"|"cancelled";
 
 export type CalendarItem = {
   kind: "calendar#calendarListEntry",
@@ -80,7 +82,7 @@ export type EventItem = {
   kind: "calendar#event",
   etag: string,
   id: string,
-  status: string, // "confirmed",
+  status: string,
   htmlLink: string,
   created: DateTime,
   updated: DateTime,
@@ -113,7 +115,7 @@ export type Event = {
   kind: string,
   etag: string,
   id: EventItem["id"],
-  status: "confirmed"|"tentative"|"cancelled",
+  status: EventStatus,
   htmlLink: string,
   created: DateTime,
   updated: DateTime,

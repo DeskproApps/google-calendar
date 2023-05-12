@@ -1,6 +1,7 @@
 import { HorizontalDivider, LoadingSpinner } from "@deskpro/app-sdk";
 import { CalendarsSelect } from "./CalendarsSelect";
 import { Events } from "./Events";
+import { CreateNewEventButton } from "./CreateNewEventButton";
 import type { FC } from "react";
 import type { CalendarItem, EventItem } from "../../services/google/types";
 import type { EventType } from "../../types";
@@ -13,6 +14,7 @@ type Props = {
   onSelectedCalendar: (calendarId: CalendarItem["id"]) => void,
   onLoadNextWeek: () => void,
   onNavigateToEvent: (calendarId: CalendarItem["id"], eventId: EventItem["id"]) => void,
+  onNavigateToCreateEvent: () => void,
 };
 
 const Home: FC<Props> = ({
@@ -23,9 +25,11 @@ const Home: FC<Props> = ({
   onSelectedCalendar,
   onLoadNextWeek,
   onNavigateToEvent,
+  onNavigateToCreateEvent,
 }) => {
   return (
     <>
+      <CreateNewEventButton onNavigateToCreateEvent={onNavigateToCreateEvent} />
       <CalendarsSelect
         calendars={calendars}
         selectedCalendars={selectedCalendars}

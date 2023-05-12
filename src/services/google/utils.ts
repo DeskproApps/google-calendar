@@ -1,4 +1,5 @@
 import has from "lodash/has";
+import { GoogleAPIError } from "./GoogleAPIError";
 import type { OAuthToken, GoogleRestError } from "./types";
 
 const isAccessToken = (
@@ -7,4 +8,8 @@ const isAccessToken = (
   return has(payload, ["access_token"]);
 };
 
-export { isAccessToken };
+const isGoogleRestError = (error: Error|typeof GoogleAPIError): error is GoogleAPIError => {
+  return has(error, ["data", "error", "message"]);
+};
+
+export { isAccessToken, isGoogleRestError };

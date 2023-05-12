@@ -16,6 +16,7 @@ import {
   AdminPage,
   LoginPage,
   LoadingAppPage,
+  CreateEventPage,
   EventDetailsPage,
 } from "./pages";
 import { useLogout } from "./hooks";
@@ -68,6 +69,7 @@ const App: FC = () => {
           <Route path="/admin/callback" element={<AdminPage/>} />
           <Route path="/login" element={<LoginPage/>} />
           <Route path="/home" element={<HomePage/>} />
+          <Route path="/event/create" element={<CreateEventPage/>} />
           <Route path="/event" element={<EventDetailsPage/>} />
           <Route index element={<LoadingAppPage/>} />
         </Routes>
