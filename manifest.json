@@ -2,7 +2,7 @@
   "name": "@deskpro-apps/google-calendar",
   "title": "Google Calendar",
   "description": "View, create, and schedule future events with your users.",
-  "version": "0.0.15",
+  "version": "0.0.16",
   "scope": "agent",
   "appStoreUrl": "https://www.deskpro.com/product-embed/apps/google-calendar",
   "hasDevMode": true,
