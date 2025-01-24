@@ -5,6 +5,7 @@ import { Input } from "@deskpro/deskpro-ui";
 import { useDeskproAppTheme } from "@deskpro/app-sdk";
 import type { FC } from "react";
 // import type { DatePickerProps } from "@deskpro/deskpro-ui";
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 type DatePickerProps = any; // @todo: Fix me
 import "./DateInput.css";
 
