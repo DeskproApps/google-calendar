@@ -4,7 +4,8 @@ import Flatpickr from 'react-flatpickr';
 import { Input } from "@deskpro/deskpro-ui";
 import { useDeskproAppTheme } from "@deskpro/app-sdk";
 import type { FC } from "react";
-import type { DatePickerProps } from "@deskpro/app-sdk";
+// import type { DatePickerProps } from "@deskpro/deskpro-ui";
+type DatePickerProps = any; // @todo: Fix me
 import "./DateInput.css";
 
 export type Props = DatePickerProps & {

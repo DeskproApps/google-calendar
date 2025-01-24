@@ -2,7 +2,8 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { HashRouter } from "react-router-dom";
 import { QueryClientProvider } from "@tanstack/react-query";
-import { DeskproAppProvider, Scrollbar } from "@deskpro/app-sdk";
+import { DeskproAppProvider } from "@deskpro/app-sdk";
+import { Scrollbar } from "@deskpro/deskpro-ui";
 import { queryClient } from "./query";
 
 import { App } from "./App";

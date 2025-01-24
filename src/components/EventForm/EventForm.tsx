@@ -61,7 +61,7 @@ const EventForm: FC<EventFormProps> = ({ onSubmit, onCancel, error }) => {
           id="startTime"
           placeholder="DD/MM/YYYY at HH:mm"
           error={has(errors, ["startTime", "message"])}
-          onChange={(date) => setValue("startTime", date[0])}
+          onChange={(date: [Date]) => setValue("startTime", date[0])}
         />
       </Label>
 
@@ -70,7 +70,7 @@ const EventForm: FC<EventFormProps> = ({ onSubmit, onCancel, error }) => {
           id="endTime"
           placeholder="DD/MM/YYYY at HH:mm"
           error={has(errors, ["endTime", "message"])}
-          onChange={(date) => setValue("endTime", date[0])}
+          onChange={(date: [Date]) => setValue("endTime", date[0])}
         />
       </Label>
 
@@ -192,7 +192,7 @@ const EventForm: FC<EventFormProps> = ({ onSubmit, onCancel, error }) => {
             id="endRecurrenceDatetime"
             placeholder="DD/MM/YYYY at HH:mm"
             error={has(errors, ["endRecurrenceDatetime", "message"])}
-            onChange={(date) => setValue("endRecurrenceDatetime", date[0])}
+            onChange={(date: [Date]) => setValue("endRecurrenceDatetime", date[0])}
           />
         </Label>
       )}

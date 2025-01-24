@@ -7,7 +7,7 @@ import {
   faExternalLinkAlt,
 } from "@fortawesome/free-solid-svg-icons";
 import { DivAsInput } from "@deskpro/deskpro-ui";
-import { Dropdown } from "@deskpro/app-sdk";
+import { Dropdown } from "@deskpro/deskpro-ui";
 import type { ReactNode } from "react";
 import type {
   AnyIcon,
@@ -15,7 +15,7 @@ import type {
   DropdownItemType,
   DivAsInputWithDisplayProps,
 } from "@deskpro/deskpro-ui";
-import type { DropdownTargetProps, DropdownProps } from "@deskpro/app-sdk";
+import type { DropdownTargetProps, DropdownProps } from "@deskpro/deskpro-ui";
 import type { Option } from "../../../types";
 import size from "lodash/size";
 

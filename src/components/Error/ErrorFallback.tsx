@@ -2,7 +2,7 @@ import { useCallback } from "react";
 import get from "lodash/get";
 import { useNavigate } from "react-router-dom";
 import { FallbackProps } from "react-error-boundary";
-import { Stack } from "@deskpro/app-sdk";
+import { Stack } from "@deskpro/deskpro-ui";
 import { GoogleAPIError } from "../../services/google";
 import { ErrorBlock } from "./ErrorBlock";
 import { Container, Button } from "../common";
