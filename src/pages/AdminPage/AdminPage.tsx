@@ -2,11 +2,11 @@ import { useState, useMemo } from "react";
 import styled from "styled-components";
 import { v4 as uuidv4 } from "uuid";
 import {
-  P1,
   LoadingSpinner,
   CopyToClipboardInput,
   useInitialisedDeskproAppClient,
 } from "@deskpro/app-sdk";
+import { P1 } from "@deskpro/deskpro-ui";
 import type { FC } from "react";
 
 const Description = styled(P1)`

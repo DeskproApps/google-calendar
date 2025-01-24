@@ -1,9 +1,11 @@
 import type { To, ParamKeyValuePair } from "react-router-dom";
 import type {
   Context,
-  IDeskproClient,
-  DropdownValueType,
+  IDeskproClient
 } from "@deskpro/app-sdk";
+import type {
+  DropdownValueType,
+} from "@deskpro/deskpro-ui";
 import type { EventItem, CalendarItem } from "./services/google/types";
 
 /** Common types */
