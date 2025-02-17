@@ -5,31 +5,50 @@
   "version": "0.0.18",
   "scope": "agent",
   "appStoreUrl": "https://www.deskpro.com/product-embed/apps/google-calendar",
+  "secrets": "CQoPQ4z/cOQNr0igCVBqBvximeo8pGwbdvMxyjJ27iflmf9ijMYEiK6Cr7Wynj1UjrMwl1Y6IxRnbq+zY00DdtoO6pMSYl9bBopFMQTI4fhXppN5oB11xxJP/CUqLX/oERdMB/lDR4uvNqYcqMrgJJ7zfeOTdUhlbC1tCRbRScqHpCQsZXz9THB9pa/nH0mPri+27lb/6SLnFW/7Rp806/muXonZYrAcVlb9w7tFsSxHI2SfUceQRJPPblfCTAfNEHoDPziIqCW+iyn3dH7JuBVcqLQBJRPnn2b4V4e1siqfNtPtYS2c8XiAGgsxS7Y7EY4XKtvXaeI0iqUPJKgbiFXzUHYAajfkuAARBJnASikuoA+pNb1Iu2b6g31QkC83BSB6c9u33gNN0DNrdDNdpMmWPLmcB9Bse6mB8H0gSOS3CWeVfyrJ9CnEn5g2udLIeSCmqo365oapC8NWLStLxnHjNU4RQtuf36S7Z1+1jzzV1P18hTx49fxJmEVJklddhtQmha+8ekeJrJHoZ/5Qdpgr/FBrrv3OxMUCQ27REoc3d6A1U8c3G2g7ntyId0ukK5/ggXOONy94+Vz81gnsUvK3A7iz/H1K8qAqtTrK64970ua/npRQxlHHyIdOFsWj9wd1kdesinShsVfCh0V0XjDW9960mzv4vevC6R/ZiWo=",
   "hasDevMode": true,
   "isSingleInstall": false,
   "serveUrl": "https://apps-cdn.deskpro-service.com/__name__/__version__",
-  "targets": [{ "target": "ticket_sidebar", "entrypoint": "index.html" }],
+  "targets": [
+    {
+      "target": "ticket_sidebar",
+      "entrypoint": "index.html"
+    }
+  ],
   "settings": {
+    "use_deskpro_saas": {
+      "title": "One-Click Installation",
+      "type": "boolean",
+      "default": true,
+      "isRequired": false,
+      "isBackendOnly": false,
+      "order": 5
+    },
     "client_id": {
       "title": "Client ID",
       "type": "string",
-      "isRequired": true,
+      "isRequired": false,
       "isBackendOnly": false,
+      "condition": "settings.use_deskpro_saas != true",
       "order": 10
     },
     "client_secret": {
-      "title": "Client secret",
+      "title": "Client Secret",
       "type": "string",
-      "isRequired": true,
+      "isRequired": false,
       "isBackendOnly": true,
+      "condition": "settings.use_deskpro_saas != true",
       "order": 20
     },
     "callback_url": {
       "title": "Callback URL",
       "type": "app_embedded",
-      "options": { "entrypoint": "#/admin/callback" },
+      "options": {
+        "entrypoint": "#/admin/callback"
+      },
       "isRequired": false,
       "isBackendOnly": true,
+      "condition": "settings.use_deskpro_saas != true",
       "order": 30
     }
   },
@@ -37,12 +56,18 @@
     "whitelist": [
       {
         "url": "https://www.googleapis.com/calendar/v3/.*",
-        "methods": ["GET", "POST"],
+        "methods": [
+          "GET",
+          "POST"
+        ],
         "timeout": 20
       },
       {
         "url": "https://oauth2.googleapis.com/.*",
-        "methods": ["GET", "POST"],
+        "methods": [
+          "GET",
+          "POST"
+        ],
         "timeout": 20
       }
     ]

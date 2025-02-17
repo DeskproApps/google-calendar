@@ -13,6 +13,7 @@ export const DAY_FORMAT = "E, MMM d";
 export const APP_PREFIX = "google_calendar";
 
 export const ACCESS_TOKEN_PATH = `${APP_PREFIX}/oauth/global/access_token`;
+export const REFRESH_TOKEN_PATH = `${APP_PREFIX}/oauth/global/refresh_token`;
 export const ACCESS_TOKEN = `[user[${ACCESS_TOKEN_PATH}]]`;
 
 export const placeholders = {
