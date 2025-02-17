@@ -1,116 +1,111 @@
-import { useState, useEffect, useMemo, useCallback } from "react";
-import { createSearchParams } from "react-router-dom";
-import { v4 as uuidv4 } from "uuid";
-import get from "lodash/get";
-import has from "lodash/has";
-import {
-  useDeskproAppClient,
-  useDeskproLatestAppContext,
-} from "@deskpro/app-sdk";
-import { useAsyncError } from "../../hooks";
-import { setAccessTokenService } from "../../services/deskpro";
-import {
-  isAccessToken,
-  getCalendarsService,
-  getAccessTokenService,
-} from "../../services/google";
-import type { OAuth2StaticCallbackUrl } from "@deskpro/app-sdk";
-import type { TicketContext } from "../../types";
-
-const defaultLoginError = "An error occurred, please try again.";
+import { ACCESS_TOKEN_PATH, REFRESH_TOKEN_PATH } from "../../constants";
+import { createSearchParams, useNavigate } from "react-router-dom";
+import { getAccessTokenService, getCalendarsService } from "../../services/google";
+import { OAuth2Result,  useDeskproLatestAppContext, useInitialisedDeskproAppClient } from "@deskpro/app-sdk";
+import { useCallback, useState } from "react";
+import type { Settings,TicketData } from "../../types";
 
 type UseLogin = () => {
-  isAuth: boolean;
-  authLink: string;
-  isLoading: boolean;
-  onSignIn: () => void;
+  onSignIn: () => void,
+  authUrl: string | null,
+  error: null | string,
+  isLoading: boolean,
 };
 
 const useLogin: UseLogin = () => {
-  const key = useMemo(() => uuidv4(), []);
-  const { client } = useDeskproAppClient();
-  const { context } = useDeskproLatestAppContext() as { context: TicketContext };
-  const { asyncErrorHandler } = useAsyncError();
+  const [authUrl, setAuthUrl] = useState<string | null>(null);
+  const [error, setError] = useState<null | string>(null);
+  const [isLoading, setIsLoading] = useState(false)
+  const navigate = useNavigate();
 
-  const [isAuth, setIsAuth] = useState<boolean>(false);
-  const [authLink, setAuthLink] = useState<string>("");
-  const [isLoading, setIsLoading] = useState<boolean>(true);
-  const [callback, setCallback] = useState<
-    OAuth2StaticCallbackUrl | undefined
-  >();
-  const clientId = get(context, ["settings", "client_id"]);
-  const callbackUrl = get(callback, ["callbackUrl"]);
+
+  const { context } = useDeskproLatestAppContext<TicketData, Settings>();
+
+  const ticketId = context?.data?.ticket.id
+
+  useInitialisedDeskproAppClient(async (client) => {
+    if (context?.settings.use_deskpro_saas === undefined || !ticketId) {
+      // Make sure settings have loaded.
+      return
+    }
+
+    const clientId = context?.settings.client_id;
+    const mode = context?.settings.use_deskpro_saas ? 'global' : 'local';
+
+    if (mode === 'local' && typeof clientId !== 'string') {
+      // Local mode requires a clientId.
+      return
+    }
+
+    const oauth2 =
+      mode === 'local'
+        // Local Version (custom/self-hosted app)
+        ? await client.startOauth2Local(
+          ({ state, callbackUrl }) => {
+            return `https://accounts.google.com/o/oauth2/auth?${createSearchParams([
+              ["response_type", "code"],
+              ["client_id", clientId ?? ""],
+              ["state", state],
+              ["redirect_uri", callbackUrl],
+              ["scope", [
+                "https://www.googleapis.com/auth/userinfo.email",
+                "https://www.googleapis.com/auth/userinfo.profile",
+                "https://www.googleapis.com/auth/calendar"
+              ].join(" ")]
+            ])}`
+          },
+          /\bcode=(?<code>[^&#]+)/,
+          async (code: string): Promise<OAuth2Result> => {
+            // Extract the callback URL from the authorization URL
+            const url = new URL(oauth2.authorizationUrl);
+            const redirectUri = url.searchParams.get("redirect_uri");
+
+            if (!redirectUri) {
+              throw new Error("Failed to get callback URL");
+            }
+
+            const data = await getAccessTokenService(client, code, redirectUri);
+
+            return { data }
+          }
+        )
+
+        // Global Proxy Service
+        : await client.startOauth2Global("208037090092-fd19igik6125hhgk5eug059su2mn5bg9.apps.googleusercontent.com");
+
+    setAuthUrl(oauth2.authorizationUrl)
+    setIsLoading(false)
+
+    try {
+      const result = await oauth2.poll()
+      await Promise.all([
+        client.setUserState(ACCESS_TOKEN_PATH, result.data.access_token, { backend: true }),
+        result.data.refresh_token ? client.setUserState(REFRESH_TOKEN_PATH, result.data.refresh_token, { backend: true }) : Promise.resolve(undefined)
+      ])
+
+      // Attempt to get the user's calendars to verify that they are authenticated
+      // This function will throw an error if the user isn't properly authenticated
+      // Then we display a user friendly message
+      try {
+        await getCalendarsService(client)
+      } catch (e) {
+        throw new Error("Error authenticating user")
+      }
+
+      navigate("/home")
+    } catch (error) {
+      setError(error instanceof Error ? error.message : 'Unknown error');
+      setIsLoading(false);
+    }
+  }, [setAuthUrl, context?.settings.client_id, context?.settings.use_deskpro_saas])
 
   const onSignIn = useCallback(() => {
-    if (!client || !callback?.poll || !callback.callbackUrl) {
-      return;
-    }
+    setIsLoading(true);
+    window.open(authUrl ?? "", '_blank');
+  }, [setIsLoading, authUrl]);
 
-    setTimeout(() => setIsLoading(true), 1000);
 
-    callback.poll()
-      .then(({ token }) => {
-        return getAccessTokenService(client, token, callback.callbackUrl);
-      })
-      .then((data) => {
-        return isAccessToken(data)
-          ? setAccessTokenService(client, data)
-          : Promise.reject(defaultLoginError)
-      })
-      .then(({ isSuccess, errors }) => {
-        return isSuccess ? Promise.resolve() : Promise.reject(errors)
-      })
-      .then(() => getCalendarsService(client))
-      .then((calendars) => {
-        if (!has(calendars, ["items"])) {
-          throw new Error("Can't find calendars");
-        } else {
-          setIsAuth(true);
-        }
-      })
-      .catch(asyncErrorHandler)
-      .finally(() => setIsLoading(false));
-  }, [callback, client, setIsLoading, asyncErrorHandler]);
-
-  /** set callback */
-  useEffect(() => {
-    if (!callback && client) {
-      client
-        .oauth2()
-        .getGenericCallbackUrl(
-          key,
-          // eslint-disable-next-line no-useless-escape
-          /code=(?<token>[\d\w%\/-]+)/,
-          /state=(?<key>[\d\w-]+)/
-        )
-        .then(setCallback);
-    }
-  }, [client, key, callback]);
-
-  /** set authLink */
-  useEffect(() => {
-    if (key && callbackUrl && clientId) {
-      setAuthLink(
-        `https://accounts.google.com/o/oauth2/auth?${createSearchParams([
-          ["state", key],
-          ["response_type", "code"],
-          ["client_id", clientId],
-          ["redirect_uri", callbackUrl],
-          ["scope", [
-            "https://www.googleapis.com/auth/userinfo.email",
-            "https://www.googleapis.com/auth/userinfo.profile",
-            "https://www.googleapis.com/auth/calendar"
-          ].join(" ")]
-        ])}`
-      );
-      setIsLoading(false);
-    } else {
-      setAuthLink("");
-      setIsLoading(true);
-    }
-  }, [key, callbackUrl, clientId]);
-
-  return { isAuth, authLink, onSignIn, isLoading };
+  return { authUrl, onSignIn, error, isLoading }
 };
 
 export { useLogin };

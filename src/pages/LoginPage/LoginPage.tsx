@@ -1,15 +1,12 @@
-import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { Container, AnchorButton } from "../../components/common";
 import { H3 } from "@deskpro/deskpro-ui";
 import { Title, useDeskproElements } from "@deskpro/app-sdk";
-import { useSetTitle } from "../../hooks";
 import { useLogin } from "./hooks";
-import { Container, AnchorButton } from "../../components/common";
+import { useSetTitle } from "../../hooks";
 import type { FC } from "react";
 
 const LoginPage: FC = () => {
-  const navigate = useNavigate();
-  const { isAuth, authLink, onSignIn, isLoading } = useLogin();
+  const { onSignIn, authUrl, isLoading } = useLogin();
 
   useSetTitle("Google Calendar");
 
@@ -18,11 +15,6 @@ const LoginPage: FC = () => {
     registerElement("refresh", { type: "refresh_button" });
   });
 
-  useEffect(() => {
-    if (isAuth) {
-      navigate("/home");
-    }
-  }, [isAuth, navigate]);
 
   return (
     <Container>
@@ -31,10 +23,10 @@ const LoginPage: FC = () => {
         intent="secondary"
         text="Log In"
         target="_blank"
-        href={authLink}
+        href={authUrl || "#"}
         onClick={onSignIn}
         loading={isLoading}
-        disabled={isLoading}
+        disabled={isLoading || !authUrl}
       />
     </Container>
   );
