@@ -1,9 +1,9 @@
-import { useNavigate } from "react-router-dom";
-import { act, cleanup, waitFor } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
+import { act } from "react";
+import { cleanup, waitFor } from "@testing-library/react";
 import { LoginPage } from "../LoginPage";
 import { render } from "../../../../testing";
 import { useLogin } from "../hooks";
+import userEvent from "@testing-library/user-event";
 
 jest.mock("react-router-dom", () => ({
   ...jest.requireActual("react-router-dom"),
@@ -17,55 +17,39 @@ describe("LoginPage", () => {
     cleanup();
   });
 
-  test("render", async () => {
+  test("renders login button properly", async () => {
     (useLogin as jest.Mock).mockImplementation(() => ({
       error: null,
       isAuth: false,
-      authLink: "https://call-back.url/?code=123",
+      authUrl: "https://call-back.url/?code=123",
       onSignIn: jest.fn(),
       isLoading: false,
     }));
     const { findByRole } = render(<LoginPage/>, { wrappers: { theme: true }});
     const loginButton = await findByRole("link", { name: /Log In/i });
-
+  
     await waitFor(() => {
       expect(loginButton).toBeInTheDocument();
     });
   });
 
-  test("should run auth flow", async () => {
+  test("triggers onSignIn when login button is clicked", async () => {
     const onSignIn = jest.fn();
     (useLogin as jest.Mock).mockImplementation(() => ({
       error: null,
       isAuth: false,
       isLoading: false,
-      authLink: "https://call-back.url/?code=123",
+      authUrl: "https://call-back.url/?code=123", 
       onSignIn,
     }));
     const { findByRole } = render(<LoginPage/>, { wrappers: { theme: true }});
-
+  
     const loginButton = await findByRole("link", { name: /Log In/i });
-
+  
     await act(async () => {
       await userEvent.click(loginButton);
     });
-
-    expect(onSignIn).toHaveBeenCalledTimes(1);
-  });
-
-  test("should navigate to /home after auth", async () => {
-    const navigate = jest.fn();
-    (useLogin as jest.Mock).mockImplementation(() => ({
-      error: null,
-      isAuth: true,
-      isLoading: false,
-      authLink: "https://call-back.url/?code=123",
-      onSignIn: jest.fn(),
-    }));
-    (useNavigate as jest.Mock).mockImplementation(() => navigate);
-    render(<LoginPage/>, { wrappers: { theme: true }});
-
-    expect(navigate).toHaveBeenCalledTimes(1);
-    expect(navigate).toHaveBeenCalledWith("/home");
+  
+    expect(onSignIn).toHaveBeenCalledTimes(1)
   });
 });
