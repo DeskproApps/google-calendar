@@ -31,7 +31,7 @@ export type RequestParams = {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   data?: any,
   headers?: Dict<string>,
-  queryParams?: string|Dict<string>|ParamKeyValuePair[],
+  queryParams?: string | Dict<string> | ParamKeyValuePair[],
 };
 
 export type Request = <T>(
@@ -42,9 +42,17 @@ export type Request = <T>(
 /** Deskpro types */
 export type Settings = {
   client_id?: string,
+  use_deskpro_saas?: boolean,
+
 };
 
-export type TicketData = object;
+export type TicketData = {
+  ticket: {
+    id: string,
+    subject: string,
+    permalinkUrl: string,
+  },
+};
 
 export type TicketContext = Context<TicketData, Maybe<Settings>>;
 
@@ -53,7 +61,7 @@ export type NavigateToChangePage = { type: "changePage", path: To };
 export type EventPayload =
   | NavigateToChangePage
   | { type: "logout" }
-;
+  ;
 
 /** Entities */
 export type EventType = {
