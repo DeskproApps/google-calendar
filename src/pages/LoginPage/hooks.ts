@@ -1,8 +1,8 @@
 import { ACCESS_TOKEN_PATH, REFRESH_TOKEN_PATH } from "../../constants";
 import { createSearchParams, useNavigate } from "react-router-dom";
 import { getAccessTokenService, getCalendarsService } from "../../services/google";
-import { IOAuth2, OAuth2Result, useDeskproAppClient, useDeskproLatestAppContext, useInitialisedDeskproAppClient } from "@deskpro/app-sdk";
-import { useCallback, useEffect, useState } from "react";
+import { IOAuth2, OAuth2Result, useDeskproLatestAppContext, useInitialisedDeskproAppClient } from "@deskpro/app-sdk";
+import { useCallback, useState } from "react";
 import type { Settings, TicketData } from "../../types";
 
 type UseLogin = () => {
@@ -22,7 +22,6 @@ const useLogin: UseLogin = () => {
   const navigate = useNavigate();
 
   const { context } = useDeskproLatestAppContext<TicketData, Settings>();
-  const { client } = useDeskproAppClient()
 
   const ticketId = context?.data?.ticket.id
 
@@ -81,8 +80,8 @@ const useLogin: UseLogin = () => {
     setOauth2(oauth2Temp)
   }, [setAuthUrl, context?.settings.client_id, context?.settings.use_deskpro_saas])
 
-  useEffect(() => {
-    if (!client || !ticketId || !oauth2) {
+  useInitialisedDeskproAppClient((client) => {
+    if (!ticketId || !oauth2) {
       return
     }
 
@@ -115,7 +114,7 @@ const useLogin: UseLogin = () => {
     if (isPolling) {
       startPolling()
     }
-  }, [isPolling, client, ticketId, oauth2, navigate])
+  }, [isPolling, ticketId, oauth2, navigate])
 
   const onSignIn = useCallback(() => {
     setIsLoading(true);
