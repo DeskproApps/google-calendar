@@ -17,7 +17,7 @@ const useLogin: UseLogin = () => {
   const [error, setError] = useState<null | string>(null);
   const [isLoading, setIsLoading] = useState(false)
   const [isPolling, setIsPolling] = useState(false)
-  const [oauth2, setOauth2] = useState<IOAuth2 | null>(null)
+  const [oauth2Context, setOAuth2Context] = useState<IOAuth2 | null>(null)
 
   const navigate = useNavigate();
 
@@ -40,7 +40,7 @@ const useLogin: UseLogin = () => {
     }
 
     // Start OAuth process depending on the authentication mode
-    const oauth2Temp =
+    const oauth2Response =
       mode === 'local'
         // Local Version (custom/self-hosted app)
         ? await client.startOauth2Local(
@@ -60,7 +60,7 @@ const useLogin: UseLogin = () => {
           /\bcode=(?<code>[^&#]+)/,
           async (code: string): Promise<OAuth2Result> => {
             // Extract the callback URL from the authorization URL
-            const url = new URL(oauth2Temp.authorizationUrl);
+            const url = new URL(oauth2Response.authorizationUrl);
             const redirectUri = url.searchParams.get("redirect_uri");
 
             if (!redirectUri) {
@@ -76,18 +76,18 @@ const useLogin: UseLogin = () => {
         // Global Proxy Service
         : await client.startOauth2Global("420430645319-ig0pvlaoaute8dmg07nj2hsc2vrb8vsn.apps.googleusercontent.com");
 
-    setAuthUrl(oauth2Temp.authorizationUrl)
-    setOauth2(oauth2Temp)
+    setAuthUrl(oauth2Response.authorizationUrl)
+    setOAuth2Context(oauth2Response)
   }, [setAuthUrl, context?.settings.client_id, context?.settings.use_deskpro_saas])
 
   useInitialisedDeskproAppClient((client) => {
-    if (!ticketId || !oauth2) {
+    if (!ticketId || !oauth2Context) {
       return
     }
 
     const startPolling = async () => {
       try {
-        const result = await oauth2.poll()
+        const result = await oauth2Context.poll()
         await Promise.all([
           client.setUserState(ACCESS_TOKEN_PATH, result.data.access_token, { backend: true }),
           result.data.refresh_token ? client.setUserState(REFRESH_TOKEN_PATH, result.data.refresh_token, { backend: true }) : Promise.resolve(undefined)
@@ -114,7 +114,7 @@ const useLogin: UseLogin = () => {
     if (isPolling) {
       startPolling()
     }
-  }, [isPolling, ticketId, oauth2, navigate])
+  }, [isPolling, ticketId, oauth2Context, navigate])
 
   const onSignIn = useCallback(() => {
     setIsLoading(true);
