@@ -39,7 +39,7 @@
     "callback_url": {
       "title": "Callback URL",
       "type": "app_embedded",
-      "options": { "entrypoint": "#/admin/callback", "height": 80 },
+      "options": { "entrypoint": "#/admin/callback" },
       "isRequired": false,
       "isBackendOnly": true,
       "condition": "settings.use_advanced_connect == true",
