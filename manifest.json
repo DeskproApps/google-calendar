@@ -25,7 +25,7 @@
       "type": "string",
       "isRequired": false,
       "isBackendOnly": false,
-      "condition": "settings.use_advanced_connect == true",
+      "condition": "settings.use_advanced_connect != false",
       "order": 10
     },
     "client_secret": {
@@ -33,7 +33,7 @@
       "type": "string",
       "isRequired": false,
       "isBackendOnly": true,
-      "condition": "settings.use_advanced_connect == true",
+      "condition": "settings.use_advanced_connect != false",
       "order": 20
     },
     "callback_url": {
@@ -42,7 +42,7 @@
       "options": { "entrypoint": "#/admin/callback" },
       "isRequired": false,
       "isBackendOnly": true,
-      "condition": "settings.use_advanced_connect == true",
+      "condition": "settings.use_advanced_connect != false",
       "order": 30
     }
   },
