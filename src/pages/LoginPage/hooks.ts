@@ -26,7 +26,7 @@ const useLogin: UseLogin = () => {
   const ticketId = context?.data?.ticket.id
 
   useInitialisedDeskproAppClient(async (client) => {
-    if (context?.settings.use_advanced_connect === undefined || !ticketId) {
+    if (!ticketId) {
       // Make sure settings have loaded.
       return
     }
