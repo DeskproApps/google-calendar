@@ -26,13 +26,13 @@ const useLogin: UseLogin = () => {
   const ticketId = context?.data?.ticket.id
 
   useInitialisedDeskproAppClient(async (client) => {
-    if (context?.settings.use_deskpro_saas === undefined || !ticketId) {
+    if (context?.settings.use_advanced_connect === undefined || !ticketId) {
       // Make sure settings have loaded.
       return
     }
 
     const clientId = context?.settings.client_id;
-    const mode = context?.settings.use_deskpro_saas ? 'global' : 'local';
+    const mode = context?.settings.use_advanced_connect ? 'local' : 'global';
 
     if (mode === 'local' && typeof clientId !== 'string') {
       // Local mode requires a clientId.
@@ -78,7 +78,7 @@ const useLogin: UseLogin = () => {
 
     setAuthUrl(oauth2Response.authorizationUrl)
     setOAuth2Context(oauth2Response)
-  }, [setAuthUrl, context?.settings.client_id, context?.settings.use_deskpro_saas])
+  }, [setAuthUrl, context?.settings.client_id, context?.settings.use_advanced_connect])
 
   useInitialisedDeskproAppClient((client) => {
     if (!ticketId || !oauth2Context) {
