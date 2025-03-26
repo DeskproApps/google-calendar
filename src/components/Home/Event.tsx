@@ -30,7 +30,7 @@ const Event: FC<Props> = ({
     <>
       <Title
         as={H3}
-        title={<Link href="#" onClick={onClick}>{summary}</Link>}
+        title={<Link href="#" onClick={onClick}>{summary ?? "Untitled event"}</Link>}
         link={htmlLink}
         icon={<CalendarLogo />}
         marginBottom={7}
