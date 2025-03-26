@@ -37,7 +37,7 @@ const Event: FC<Props> = ({
       />
       <TwoProperties
         leftLabel="Time"
-        leftText={`${format(start.dateTime, TIME_FORMAT)} - ${format(end.dateTime, TIME_FORMAT)}`}
+        leftText={formatEventTime(start, end)}
         rightLabel="Calendar"
         rightText={<OverflowText as={P5}>{calendarSummary}</OverflowText>}
         marginBottom={20}
@@ -47,3 +47,23 @@ const Event: FC<Props> = ({
 };
 
 export { Event };
+
+function formatEventTime(start?: EventType["start"], end?: EventType["end"]) {
+  let eventTimeString;
+
+  if (start?.dateTime && end?.dateTime) {
+    // If both start and end dateTime are present
+    eventTimeString = `${format(start.dateTime, TIME_FORMAT)} - ${format(end.dateTime, TIME_FORMAT)}`;
+  } else if (start?.dateTime) {
+    // If only start dateTime is present
+    eventTimeString = format(start.dateTime, TIME_FORMAT);
+  } else if (end?.dateTime) {
+    // If only end dateTime is present
+    eventTimeString = format(end.dateTime, TIME_FORMAT);
+  } else {
+    // If neither dateTime is present, show as all-day event
+    eventTimeString = "All day";
+  }
+
+  return eventTimeString
+}
