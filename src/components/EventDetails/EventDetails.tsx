@@ -44,12 +44,12 @@ const EventDetails: FC<Props> = ({ event, calendar }) => {
 
       <Property
         label="Start date"
-        text={format(get(event, ["start", "dateTime"]), EVENT_FORMAT)}
+        text={format(event.start.dateTime?? event.start.date, EVENT_FORMAT)}
       />
 
       <Property
         label="End date"
-        text={format(get(event, ["end", "dateTime"]), EVENT_FORMAT)}
+        text={format(event.end.dateTime?? event.end.date, EVENT_FORMAT)}
       />
 
       <Property
