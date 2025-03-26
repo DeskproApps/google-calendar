@@ -1,21 +1,14 @@
-import { match } from "ts-pattern";
-import get from "lodash/get";
+import { CalendarLogo, Container, MdContainer, OverflowText, Property } from "../common";
+import { EVENT_FORMAT } from "../../constants";
 import { faCheck, faX, faQuestion } from "@fortawesome/free-solid-svg-icons";
+import { format } from "../../utils/date";
+import { linkRenderer } from "../../utils";
+import { match } from "ts-pattern";
 import { P5, Stack, TagCircleIcon } from "@deskpro/deskpro-ui";
 import { Title } from "@deskpro/app-sdk";
-import { format } from "../../utils/date";
-import { EVENT_FORMAT } from "../../constants";
-import { linkRenderer } from "../../utils";
-import {
-  Property,
-  Container,
-  MdContainer,
-  OverflowText,
-  CalendarLogo,
-} from "../common";
-import type { FC } from "react";
 import type { AnyIcon } from "@deskpro/deskpro-ui";
 import type { Event, CalendarItem } from "../../services/google/types";
+import type { FC } from "react";
 
 type Props = {
   event: Event,
@@ -23,33 +16,33 @@ type Props = {
 };
 
 const EventDetails: FC<Props> = ({ event, calendar }) => {
-  const isAttendees = Array.isArray(get(event, ["attendees"])) && event.attendees.length > 0;
+  const isAttendees = Array.isArray(event?.attendees) && event.attendees.length > 0;
 
   return (
     <Container>
       <Title
-        title={get(event, ["summary"], "-")}
-        link={get(event, ["htmlLink"], "")}
+        title={event?.summary ?? "Untitled Event"}
+        link={event?.htmlLink ?? "#"}
         icon={<CalendarLogo />}
       />
 
-      <Property label="Calendar" text={get(calendar, ["summary"], "-")} />
+      <Property label="Calendar" text={calendar?.summary ?? "-"} />
 
       <Property
         label="Description"
         text={(
-          <P5 dangerouslySetInnerHTML={{ __html: get(event, ["description"], "-") }} />
+          <P5 dangerouslySetInnerHTML={{ __html: event?.description ?? "-" }} />
         )}
       />
 
       <Property
         label="Start date"
-        text={format(event.start.dateTime?? event.start.date, EVENT_FORMAT)}
+        text={format(event?.start?.dateTime ?? event?.start?.date, EVENT_FORMAT)}
       />
 
       <Property
         label="End date"
-        text={format(event.end.dateTime?? event.end.date, EVENT_FORMAT)}
+        text={format(event?.end?.dateTime ?? event?.end?.date, EVENT_FORMAT)}
       />
 
       <Property
@@ -72,14 +65,14 @@ const EventDetails: FC<Props> = ({ event, calendar }) => {
         )}
       />
 
-      <Property label="Creator" text={get(event, ["creator", "email"], "-")} />
+      <Property label="Creator" text={event?.creator?.email ?? "-"} />
 
       <Property
         label="Location"
         text={(
           <MdContainer
             dangerouslySetInnerHTML={{
-              __html: linkRenderer(get(event, ["location"], "-")),
+              __html: linkRenderer(event?.location ?? "-"),
             }}
           />
         )}
