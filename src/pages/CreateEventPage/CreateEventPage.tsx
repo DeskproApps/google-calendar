@@ -49,7 +49,7 @@ const CreateEventPage: FC = () => {
     registerElement("refresh", { type: "refresh_button" });
     registerElement("home", {
       type: "home_button",
-      payload: { type: "changePage", path: -1 },
+      payload: { type: "changePage", path: "/home" },
     });
   });
 
