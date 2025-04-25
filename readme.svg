@@ -54,11 +54,6 @@
                 box-sizing: border-box;
                 z-index: 1;
                 }
-
-                .deskproLogo{
-
-                }
-
             </style>
 
             <div class="container">
