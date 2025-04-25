@@ -1,9 +1,9 @@
-<svg fill="none" viewBox="0 0 1828 480" width="1828" height="480" xmlns="http://www.w3.org/2000/svg">
+<svg fill="none" viewBox="0 0 600 480" width="600" height="480" xmlns="http://www.w3.org/2000/svg">
     <foreignObject x="0" y="0" width="100%" height="100%">
         <div xmlns="http://www.w3.org/1999/xhtml">
             <style>
                 .container {
-                background-color: #136DBC;
+                background-color: transparent;
                 height: 1828px;
                 width: 100%;
                 margin: 0;

@@ -1,7 +1,5 @@
-<!-- <img align="right" alt="Deskpro" src="https://raw.githubusercontent.com/DeskproApps/google-calendar/master/docs/assets/deskpro-logo.svg" /> -->
-
-<div style="width: 100%">
-<img src="readme.svg" style="width: 100%">
+<div style="background: #136DBC; width: 100%; height: 480px; display: flex; align-items: center; justify-content: center">
+<img src="readme.svg">
 </div>
 
 <div align="center">
@@ -89,11 +87,3 @@ Every app deployment requires that the version property in the `manifest.json` f
 * We increment patch versions, i.e. 1.0.1, automatically. You don't need to do anything and this will happen
 * Minor versions, i.e. 1.1.0, are incremented if you add the minor-version GitHub label to your PR
 * Major versions, i.e. 2.0.0, are incremented if you add the major-version GitHub label to your PR
-
-<!-- # Google Calendar
-
-View, create, and schedule future events with your users.
-
-![Google Calendar - Deskpro](./docs/assets/google-calendar-readme.png)
-
-[Find out more about our Google Calendar App](https://www.deskpro.com/apps/google-calendar) -->
