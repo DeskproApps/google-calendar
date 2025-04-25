@@ -1,4 +1,8 @@
-<img align="right" alt="Deskpro" src="https://raw.githubusercontent.com/DeskproApps/google-calendar/master/docs/assets/deskpro-logo.svg" />
+<!-- <img align="right" alt="Deskpro" src="https://raw.githubusercontent.com/DeskproApps/google-calendar/master/docs/assets/deskpro-logo.svg" /> -->
+
+<div style="width: 100%">
+<img src="readme.svg" style="width: 100%">
+</div>
 
 # Google Calendar
 
