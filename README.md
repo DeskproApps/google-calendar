@@ -6,7 +6,6 @@
 
 <div align="center">
   <br />
-  <br />
   <h1>Google Calender App</h1>
   <a href="https://support.deskpro.com/ga/guides/developers/anatomy-of-an-app" target="_blank">Deskpro Apps Documentation</a>
   <span>&nbsp;&nbsp;•&nbsp;&nbsp;</span>
