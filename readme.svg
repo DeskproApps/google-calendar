@@ -27,7 +27,6 @@
                 .logoBox{
                 width: 193.37px;
                 height: 193.37px;
-                position: relative;
                 }
 
                 .logoBoxContent{
@@ -36,31 +35,21 @@
                 background-color: white;
                 border: 5px solid #032B4E;
                 border-radius: 35px;
-                position: relative;
                 z-index: 2;
                 object-fit: contain;
                 padding: 20px;
+                box-shadow: 10px 10px 0 0 #032B4E;
                 box-sizing: border-box;
-                }
-
-                .logoBoxShadow{
-                width: 193.37px;
-                height: 193.37px;
-                background-color: #032B4E;
-                border-radius: 35px;
-                position: absolute;
-                top: 10px;
-                left: 10px;
-                box-sizing: border-box;
-                z-index: 1;
                 }
             </style>
 
             <div class="container">
-                <span style="font-size: 40px; font-weight: 500; text-align: center;">
+                <span style="font-size: 40px; font-weight: 600; text-align: center;">
                     deskpro.com/apps</span>
 
+                <!-- Logos -->
                 <div class="logosWrapper">
+                    <!-- Deskpro Logo -->
                     <div class="logoBox">
                         <div class="logoBoxContent">
                             <!-- Deskpro Logo Begins -->
@@ -190,6 +179,7 @@
 
                     <span style="font-size: 60px; font-weight: 900;">+</span>
 
+                    <!-- Third Party Logo -->
                     <div class="logoBox">
                         <div class="logoBoxContent">
                             <!-- Third Party Logo Starts Here -->
