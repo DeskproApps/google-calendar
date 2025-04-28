@@ -42,12 +42,14 @@ To make development easier and avoid version conflicts, we recommend using **Dev
 
 #### Getting Started with DevContainers
 1. Ensure that you have [Docker](https://www.docker.com/get-started) and [VS Code](https://code.visualstudio.com/) installed.
-2. Open the project in VS Code.
-3. If you have the **Remote - Containers** extension installed, VS Code should automatically detect the `.devcontainer` configuration in this project and prompt you to reopen the folder in the container.
+2. Open the project in [VS Code](https://code.visualstudio.com/).
+3. If you have the **Remote - Containers** extension installed, [VS Code](https://code.visualstudio.com/) should automatically detect the `.devcontainer` configuration in this project and prompt you to reopen the folder in the container.
 4. After opening the project in the DevContainer, run:
    ```bash
-   pnpm install
+   pnpm start
+   ```
 
+You should now be able to view the app in your browser. For more information about developing [Deskpro apps](https://www.deskpro.com/apps), [Visit the docs](https://support.deskpro.com/ga/guides/developers/anatomy-of-an-app).
 
 ### Natively
 _We recommend using the DevContainer mentioned above for Consistency, Speed and Isolation._
@@ -74,7 +76,7 @@ pnpm start
 You should now be able to view the app in your browser. For more information about developing [Deskpro apps](https://www.deskpro.com/apps), [Visit the docs](https://support.deskpro.com/ga/guides/developers/anatomy-of-an-app).
 
 ### Testing
-We've included `jest` to run your tests. It will look anywhere in `/src` for test suite files ending in `.test.tsx` or `.test.ts`.
+We've included `jest` to run tests. It will look anywhere in `/src` for test suite files ending in `.test.tsx` or `.test.ts`.
 
 You can run all tests using:
 
@@ -90,7 +92,7 @@ Every app deployment requires that the version property in the `manifest.json` f
 * Major versions, i.e. 2.0.0, are incremented if you add the major-version GitHub label to your PR
 
 ## Top contributors
-[![Contributors](https://contrib.rocks/image?repo=deskproapps/google-calendar)](https://github.com/deskproapps/google-calendar/graphs/contributors)
+[![Contributors][contributors-banner]][contributors-url]
 
 ## License
 Distributed under the MIT License. See [LICENSE.md](LICENSE.md) for more information.
@@ -107,4 +109,5 @@ Distributed under the MIT License. See [LICENSE.md](LICENSE.md) for more informa
 [license-url]: https://github.com/deskproapps/google-calendar/blob/master/LICENSE.md
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://www.linkedin.com/company/deskpro
+[contributors-banner]: https://contrib.rocks/image?repo=deskproapps/google-calendar
 [product-screenshot]: images/screenshot.png
