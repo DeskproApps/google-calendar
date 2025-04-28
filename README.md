@@ -87,9 +87,9 @@ pnpm test
 ## Versioning
 Every app deployment requires that the version property in the `manifest.json` file be updated to reflect the new app version. This is so Deskpro can detect changes and add/upgrade apps accordingly. As such, we've made altering versions easy by having CI make the actual version change for you. Here's what we do:
 
-* We increment patch versions, i.e. 1.0.1, automatically. You don't need to do anything and this will happen
-* Minor versions, i.e. 1.1.0, are incremented if you add the minor-version GitHub label to your PR
-* Major versions, i.e. 2.0.0, are incremented if you add the major-version GitHub label to your PR
+* We increment **patch** versions, i.e. 1.0.1, automatically. This is the default.
+* **Minor** versions, i.e. 1.1.0, are incremented if you add the `minor-version` GitHub label to your PR
+* **Major** versions, i.e. 2.0.0, are incremented if you add the `major-version` GitHub label to your PR
 
 ## Top contributors
 [![Contributors](https://contrib.rocks/image?repo=deskproapps/google-calendar)](https://github.com/deskproapps/google-calendar/graphs/contributors)
