@@ -27,7 +27,7 @@ You can follow our [setup guide](./SETUP.md) for a step-by-step guide to setting
 
 ## **Development**
 This app was developed primarily using **Typescript**, **React**, and **Vite**.
-We recommend using [PNPM](https://pnpm.io/) to manage this project.
+[PNPM](https://pnpm.io/) is required to manage this project..
 
 ### **Setup**
 To run this project locally:
