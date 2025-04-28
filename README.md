@@ -1,10 +1,10 @@
-[![Contributors][contributors-shield]][contributors-url]
-[![Issues][issues-shield]][issues-url]
-[![MIT License][license-shield]][license-url]
-[![GitHub Release][release-shield]][release-url]
-[![LinkedIn][linkedin-shield]][linkedin-url]
-
 <div align="center">
+  <a target="_blank" href=""><img src="https://img.shields.io/github/contributors/deskproapps/google-calendar.svg?style=for-the-badge" alt="Contributors" /></a>
+  <a target="_blank" href="https://github.com/deskproapps/google-calendar/issues"><img src="https://img.shields.io/github/issues/deskproapps/google-calendar.svg?style=for-the-badge" alt="Issues" /></a>
+  <a target="_blank" href="https://github.com/deskproapps/google-calendar/blob/master/LICENSE.md"><img src="https://img.shields.io/github/license/deskproapps/google-calendar.svg?style=for-the-badge" alt="MIT License" /></a>
+  <a target="_blank" href="https://github.com/deskproapps/google-calendar/releases"><img src="https://img.shields.io/github/v/release/deskproapps/google-calendar?style=for-the-badge" alt="GitHub Release" /></a>
+  <a target="_blank" href="https://www.linkedin.com/company/deskpro"><img src="https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555" alt="LinkedIn" /></a>
+
   <img src="readme.svg">
 </div>
 
@@ -92,22 +92,8 @@ Every app deployment requires that the version property in the `manifest.json` f
 * Major versions, i.e. 2.0.0, are incremented if you add the major-version GitHub label to your PR
 
 ## Top contributors
-[![Contributors][contributors-banner]][contributors-url]
+[![Contributors](https://contrib.rocks/image?repo=deskproapps/google-calendar)](https://github.com/deskproapps/google-calendar/graphs/contributors)
+
 
 ## License
 Distributed under the MIT License. See [LICENSE.md](LICENSE.md) for more information.
-
-[contributors-shield]: https://img.shields.io/github/contributors/deskproapps/google-calendar.svg?style=for-the-badge
-[contributors-url]: https://github.com/deskproapps/google-calendar/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/deskproapps/google-calendar.svg?style=for-the-badge
-[forks-url]: https://github.com/deskproapps/google-calendar/network/members
-[issues-shield]: https://img.shields.io/github/issues/deskproapps/google-calendar.svg?style=for-the-badge
-[issues-url]: https://github.com/deskproapps/google-calendar/issues
-[release-shield]: https://img.shields.io/github/v/release/deskproapps/google-calendar?style=for-the-badge
-[release-url]: https://github.com/deskproapps/google-calendar/releases
-[license-shield]: https://img.shields.io/github/license/deskproapps/google-calendar.svg?style=for-the-badge
-[license-url]: https://github.com/deskproapps/google-calendar/blob/master/LICENSE.md
-[linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
-[linkedin-url]: https://www.linkedin.com/company/deskpro
-[contributors-banner]: https://contrib.rocks/image?repo=deskproapps/google-calendar
-[product-screenshot]: images/screenshot.png
