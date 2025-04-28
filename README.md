@@ -9,7 +9,7 @@
 </div>
 
 <div align="center">
-  <h1>Google Calender App</h1>
+  <h1>Google Calendar App</h1>
   <p>Synchronize your help desk with Google Calendar integration, streamline your workflows with event based triggers.</p>
   <a href="https://support.deskpro.com/ga/guides/developers/anatomy-of-an-app" target="_blank">Deskpro Apps Documentation</a>
   <span>&nbsp;&nbsp;•&nbsp;&nbsp;</span>
