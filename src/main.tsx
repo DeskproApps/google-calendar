@@ -1,3 +1,4 @@
+import './instrument';
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { HashRouter } from "react-router-dom";
@@ -15,8 +16,11 @@ import "./main.css"
 
 import "@deskpro/deskpro-ui/dist/deskpro-ui.css";
 import "@deskpro/deskpro-ui/dist/deskpro-custom-icons.css";
+import { reactErrorHandler } from '@sentry/react';
 
-const root = ReactDOM.createRoot(document.getElementById('root') as Element);
+const root = ReactDOM.createRoot(document.getElementById('root') as Element, {
+  onRecoverableError: reactErrorHandler(),
+});
 root.render((
   <React.StrictMode>
     <Scrollbar style={{ height: "100%", width: "100%" }}>
