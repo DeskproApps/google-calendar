@@ -1,19 +1,13 @@
 import { useCallback } from "react";
 import get from "lodash/get";
 import { useNavigate } from "react-router-dom";
-import { FallbackProps } from "react-error-boundary";
 import { Stack } from "@deskpro/deskpro-ui";
 import { GoogleAPIError } from "../../services/google";
 import { ErrorBlock } from "./ErrorBlock";
 import { Container, Button } from "../common";
-import type { FC } from "react";
-import type { GoogleRestError } from "../../services/google/types";
+import { FallbackRender } from "@sentry/react";
 
-type Props = Omit<FallbackProps, "error"> & {
-    error: Error|GoogleRestError,
-};
-
-const ErrorFallback: FC<Props> = ({ error, resetErrorBoundary }) => {
+const ErrorFallback: FallbackRender = ({ error, resetError }) => {
   const navigate = useNavigate();
 
   let message = "There was an error!";
@@ -21,9 +15,9 @@ const ErrorFallback: FC<Props> = ({ error, resetErrorBoundary }) => {
   const nativeErrorMessage = error;
 
   const toLogin = useCallback(() => {
-    resetErrorBoundary();
+    resetError();
     navigate("/login");
-  }, [navigate, resetErrorBoundary]);
+  }, [navigate, resetError]);
 
   if (error instanceof GoogleAPIError) {
     const { status, data } = error;
