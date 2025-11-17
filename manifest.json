@@ -56,7 +56,15 @@
       {
         "url": "https://oauth2.googleapis.com/.*",
         "methods": ["GET", "POST"],
-        "timeout": 20
+        "timeout": 20,
+        "settingsInjection": {
+          "client_id": {
+            "querystring": ["client_id"]
+          },
+          "client_secret": {
+            "querystring": ["client_secret"]
+          }
+        }
       }
     ]
   }
